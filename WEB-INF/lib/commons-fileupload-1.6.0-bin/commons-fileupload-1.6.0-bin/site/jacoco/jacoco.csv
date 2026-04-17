@@ -1,0 +1,41 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Apache Commons FileUpload,org.apache.commons.fileupload,MultipartStream.ItemInputStream,53,285,14,34,16,65,12,23,2,9
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.FileItemIteratorImpl.new LimitedInputStream() {...},0,36,0,0,0,5,0,2,0,2
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase,149,480,18,38,37,128,29,32,14,19
+Apache Commons FileUpload,org.apache.commons.fileupload,FileCountLimitExceededException,10,0,0,0,4,0,2,0,2,0
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.FileSizeLimitExceededException,6,14,0,0,2,6,2,3,2,3
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.SizeLimitExceededException,12,6,0,0,4,2,2,1,2,1
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.FileUploadIOException,0,4,0,0,0,2,0,1,0,1
+Apache Commons FileUpload,org.apache.commons.fileupload,DefaultFileItem,0,9,0,0,0,2,0,1,0,1
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.FileItemIteratorImpl.FileItemStreamImpl,0,132,0,10,0,30,0,14,0,9
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.IOFileUploadException,0,5,0,0,0,2,0,1,0,1
+Apache Commons FileUpload,org.apache.commons.fileupload,RFC2231Utility,1,169,1,17,1,37,1,14,0,6
+Apache Commons FileUpload,org.apache.commons.fileupload,MultipartStream.MalformedStreamException,3,4,0,0,2,2,1,1,1,1
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.FileItemIteratorImpl.FileItemStreamImpl.new LimitedInputStream() {...},0,57,0,0,0,7,0,2,0,2
+Apache Commons FileUpload,org.apache.commons.fileupload,InvalidFileNameException,0,10,0,0,0,4,0,2,0,2
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUpload,0,16,0,0,0,8,0,4,0,4
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.UnknownSizeException,7,0,0,0,4,0,2,0,2,0
+Apache Commons FileUpload,org.apache.commons.fileupload,MultipartStream.ProgressNotifier,0,41,0,2,0,13,0,5,0,4
+Apache Commons FileUpload,org.apache.commons.fileupload,ParameterParser,16,427,8,74,5,83,9,44,1,11
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.SizeException,3,13,0,0,1,5,1,2,1,2
+Apache Commons FileUpload,org.apache.commons.fileupload,FileItemStream.ItemSkippedException,0,3,0,0,0,2,0,1,0,1
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.FileItemIteratorImpl,41,395,11,39,12,85,11,19,0,5
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadBase.InvalidContentTypeException,8,4,0,0,4,2,2,1,2,1
+Apache Commons FileUpload,org.apache.commons.fileupload,DiskFileUpload,41,16,0,0,13,6,6,3,6,3
+Apache Commons FileUpload,org.apache.commons.fileupload,FileUploadException,3,9,0,0,2,4,1,2,1,2
+Apache Commons FileUpload,org.apache.commons.fileupload,MultipartStream,79,544,9,41,24,117,12,35,5,17
+Apache Commons FileUpload,org.apache.commons.fileupload,DefaultFileItemFactory,0,20,0,0,0,6,0,3,0,3
+Apache Commons FileUpload,org.apache.commons.fileupload,MultipartStream.IllegalBoundaryException,7,0,0,0,4,0,2,0,2,0
+Apache Commons FileUpload,org.apache.commons.fileupload.portlet,PortletRequestContext,23,30,0,0,5,10,1,6,1,6
+Apache Commons FileUpload,org.apache.commons.fileupload.portlet,PortletFileUpload,23,11,0,0,5,3,4,2,4,2
+Apache Commons FileUpload,org.apache.commons.fileupload.disk,DiskFileItemFactory,16,60,1,1,6,20,4,8,3,8
+Apache Commons FileUpload,org.apache.commons.fileupload.disk,DiskFileItem,111,322,19,37,24,88,23,34,6,23
+Apache Commons FileUpload,org.apache.commons.fileupload.util.mime,ParseException,4,0,0,0,2,0,1,0,1,0
+Apache Commons FileUpload,org.apache.commons.fileupload.util.mime,MimeUtility,90,270,11,29,15,71,10,14,0,4
+Apache Commons FileUpload,org.apache.commons.fileupload.util.mime,QuotedPrintableDecoder,0,104,0,14,0,29,0,9,0,2
+Apache Commons FileUpload,org.apache.commons.fileupload.util,LimitedInputStream,22,42,2,4,6,14,2,7,1,5
+Apache Commons FileUpload,org.apache.commons.fileupload.util,Streams,25,73,0,12,6,15,2,9,2,3
+Apache Commons FileUpload,org.apache.commons.fileupload.util,FileItemHeadersImpl,0,79,0,6,0,21,0,8,0,5
+Apache Commons FileUpload,org.apache.commons.fileupload.servlet,FileCleanerCleanup,36,0,0,0,11,0,6,0,6,0
+Apache Commons FileUpload,org.apache.commons.fileupload.servlet,ServletFileUpload,13,28,2,0,3,7,2,5,1,5
+Apache Commons FileUpload,org.apache.commons.fileupload.servlet,ServletRequestContext,23,30,0,0,4,10,1,6,1,6

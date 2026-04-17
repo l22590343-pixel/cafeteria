@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RFC2231Utility.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons FileUpload</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.fileupload</a> &gt; <span class="el_source">RFC2231Utility.java</span></div><h1>RFC2231Utility.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.fileupload;
+
+import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+
+/**
+ * Utility class to decode/encode character set on HTTP Header fields based on RFC 2231. This implementation adheres to RFC 5987 in particular, which was
+ * defined for HTTP headers.
+ * &lt;p&gt;
+ * RFC 5987 builds on RFC 2231, but has lesser scope like &lt;a href=&quot;https://tools.ietf.org/html/rfc5987#section-3.2&quot;&gt;mandatory charset definition&lt;/a&gt; and
+ * &lt;a href=&quot;https://tools.ietf.org/html/rfc5987#section-4&quot;&gt;no parameter continuation&lt;/a&gt;
+ * &lt;/p&gt;
+ *
+ * @see &lt;a href=&quot;https://tools.ietf.org/html/rfc2231&quot;&gt;RFC 2231&lt;/a&gt;
+ * @see &lt;a href=&quot;https://tools.ietf.org/html/rfc5987&quot;&gt;RFC 5987&lt;/a&gt;
+ */
+final class RFC2231Utility {
+
+    /**
+     * Percent character '{@value}'.
+     */
+    private static final char PERCENT = '%';
+    /**
+     * The Hexadecimal values char array.
+     */
+<span class="fc" id="L43">    private static final char[] HEX_DIGITS = &quot;0123456789ABCDEF&quot;.toCharArray();</span>
+    /**
+     * The Hexadecimal representation of 127.
+     */
+    private static final byte MASK = 0x7f;
+    /**
+     * The Hexadecimal representation of 128.
+     */
+    private static final int MASK_128 = 0x80;
+    /**
+     * The Hexadecimal decode value.
+     */
+<span class="fc" id="L55">    private static final byte[] HEX_DECODE = new byte[MASK_128];</span>
+    // create a ASCII decoded array of Hexadecimal values
+    static {
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        for (int i = 0; i &lt; HEX_DIGITS.length; i++) {</span>
+<span class="fc" id="L59">            HEX_DECODE[HEX_DIGITS[i]] = (byte) i;</span>
+<span class="fc" id="L60">            HEX_DECODE[Character.toLowerCase(HEX_DIGITS[i])] = (byte) i;</span>
+        }
+<span class="fc" id="L62">    }</span>
+
+    /**
+     * Decodes a string of text obtained from a HTTP header as per RFC 2231
+     * &lt;p&gt;
+     * &lt;strong&gt;Eg 1.&lt;/strong&gt; {@code us-ascii'en-us'This%20is%20%2A%2A%2Afun%2A%2A%2A} will be decoded to {@code This is ***fun***}
+     * &lt;/p&gt;
+     * &lt;p&gt;
+     * &lt;strong&gt;Eg 2.&lt;/strong&gt; {@code iso-8859-1'en'%A3%20rate} will be decoded to {@code £ rate}
+     * &lt;/p&gt;
+     * &lt;p&gt;
+     * &lt;strong&gt;Eg 3.&lt;/strong&gt; {@code UTF-8''%c2%a3%20and%20%e2%82%ac%20rates} will be decoded to {@code £ and € rates}
+     * &lt;/p&gt;
+     *
+     * @param encodedText Text to be decoded has a format of {@code &lt;charset&gt;'&lt;language&gt;'&lt;encoded_value&gt;} and ASCII only
+     * @return Decoded text based on charset encoding
+     * @throws UnsupportedEncodingException The requested character set wasn't found.
+     */
+    static String decodeText(final String encodedText) throws UnsupportedEncodingException {
+<span class="fc" id="L81">        final int langDelimitStart = encodedText.indexOf('\'');</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (langDelimitStart == -1) {</span>
+            // missing charset
+<span class="fc" id="L84">            return encodedText;</span>
+        }
+<span class="fc" id="L86">        final String mimeCharset = encodedText.substring(0, langDelimitStart);</span>
+<span class="fc" id="L87">        final int langDelimitEnd = encodedText.indexOf('\'', langDelimitStart + 1);</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (langDelimitEnd == -1) {</span>
+            // missing language
+<span class="fc" id="L90">            return encodedText;</span>
+        }
+<span class="fc" id="L92">        final byte[] bytes = fromHex(encodedText.substring(langDelimitEnd + 1));</span>
+<span class="fc" id="L93">        return new String(bytes, getJavaCharset(mimeCharset));</span>
+    }
+
+    /**
+     * Converts {@code text} to their corresponding Hex value.
+     *
+     * @param text ASCII text input
+     * @return Byte array of characters decoded from ASCII table
+     */
+    private static byte[] fromHex(final String text) {
+<span class="fc" id="L103">        final int shift = 4;</span>
+<span class="fc" id="L104">        final ByteArrayOutputStream out = new ByteArrayOutputStream(text.length());</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        for (int i = 0; i &lt; text.length();) {</span>
+<span class="fc" id="L106">            final char c = text.charAt(i++);</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">            if (c == PERCENT) {</span>
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">                if (i &gt; text.length() - 2) {</span>
+<span class="nc" id="L109">                    break; // unterminated sequence</span>
+                }
+<span class="fc" id="L111">                final byte b1 = HEX_DECODE[text.charAt(i++) &amp; MASK];</span>
+<span class="fc" id="L112">                final byte b2 = HEX_DECODE[text.charAt(i++) &amp; MASK];</span>
+<span class="fc" id="L113">                out.write(b1 &lt;&lt; shift | b2);</span>
+<span class="fc" id="L114">            } else {</span>
+<span class="fc" id="L115">                out.write((byte) c);</span>
+            }
+<span class="fc" id="L117">        }</span>
+<span class="fc" id="L118">        return out.toByteArray();</span>
+    }
+
+    private static String getJavaCharset(final String mimeCharset) {
+        // good enough for standard values
+<span class="fc" id="L123">        return mimeCharset;</span>
+    }
+
+    /**
+     * Checks if Asterisk (*) at the end of parameter name to indicate, if it has charset and language information to decode the value.
+     *
+     * @param paramName The parameter, which is being checked.
+     * @return {@code true}, if encoded as per RFC 2231, {@code false} otherwise
+     */
+    static boolean hasEncodedValue(final String paramName) {
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        if (paramName != null) {</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">            return paramName.lastIndexOf('*') == paramName.length() - 1;</span>
+        }
+<span class="fc" id="L136">        return false;</span>
+    }
+
+    /**
+     * If {@code paramName} has Asterisk (*) at the end, it will be stripped off, else the passed value will be returned.
+     *
+     * @param paramName The parameter, which is being inspected.
+     * @return stripped {@code paramName} of Asterisk (*), if RFC2231 encoded
+     */
+    static String stripDelimiter(final String paramName) {
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        if (hasEncodedValue(paramName)) {</span>
+<span class="fc" id="L147">            final StringBuilder paramBuilder = new StringBuilder(paramName);</span>
+<span class="fc" id="L148">            paramBuilder.deleteCharAt(paramName.lastIndexOf('*'));</span>
+<span class="fc" id="L149">            return paramBuilder.toString();</span>
+        }
+<span class="fc" id="L151">        return paramName;</span>
+    }
+
+    /**
+     * Private constructor so that no instances can be created. This class contains only static utility methods.
+     */
+    private RFC2231Utility() {
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

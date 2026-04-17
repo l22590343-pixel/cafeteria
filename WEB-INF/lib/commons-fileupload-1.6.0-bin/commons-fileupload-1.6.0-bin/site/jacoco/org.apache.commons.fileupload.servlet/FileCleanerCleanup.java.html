@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FileCleanerCleanup.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons FileUpload</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.fileupload.servlet</a> &gt; <span class="el_source">FileCleanerCleanup.java</span></div><h1>FileCleanerCleanup.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.fileupload.servlet;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+import org.apache.commons.io.FileCleaningTracker;
+
+/**
+ * A servlet context listener, which ensures that the
+ * {@link FileCleaningTracker}'s reaper thread is terminated,
+ * when the web application is destroyed.
+ */
+public class FileCleanerCleanup implements ServletContextListener {
+
+    /**
+     * Attribute name, which is used for storing an instance of
+     * {@link FileCleaningTracker} in the web application.
+     */
+<span class="nc" id="L36">    public static final String FILE_CLEANING_TRACKER_ATTRIBUTE</span>
+<span class="nc" id="L37">        = FileCleanerCleanup.class.getName() + &quot;.FileCleaningTracker&quot;;</span>
+
+    /**
+     * Returns the instance of {@link FileCleaningTracker}, which is
+     * associated with the given {@link ServletContext}.
+     *
+     * @param servletContext The servlet context to query
+     * @return The contexts tracker
+     */
+    public static FileCleaningTracker getFileCleaningTracker(final ServletContext servletContext) {
+<span class="nc" id="L47">        return (FileCleaningTracker) servletContext.getAttribute(FILE_CLEANING_TRACKER_ATTRIBUTE);</span>
+    }
+
+    /**
+     * Sets the instance of {@link FileCleaningTracker}, which is
+     * associated with the given {@link ServletContext}.
+     *
+     * @param servletContext The servlet context to modify
+     * @param tracker The tracker to set
+     */
+    public static void setFileCleaningTracker(final ServletContext servletContext, final FileCleaningTracker tracker) {
+<span class="nc" id="L58">        servletContext.setAttribute(FILE_CLEANING_TRACKER_ATTRIBUTE, tracker);</span>
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Constructs a new instance.
+     */
+<span class="nc" id="L64">    public FileCleanerCleanup() {</span>
+        // empty
+<span class="nc" id="L66">    }</span>
+
+    /**
+     * Called when the web application is being destroyed.
+     * Calls {@link FileCleaningTracker#exitWhenFinished()}.
+     *
+     * @param sce The servlet context, used for calling
+     *     {@link #getFileCleaningTracker(ServletContext)}.
+     */
+    @Override
+    public void contextDestroyed(final ServletContextEvent sce) {
+<span class="nc" id="L77">        getFileCleaningTracker(sce.getServletContext()).exitWhenFinished();</span>
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * Called when the web application is initialized. Does
+     * nothing.
+     *
+     * @param sce The servlet context, used for calling
+     *   {@link #setFileCleaningTracker(ServletContext, FileCleaningTracker)}.
+     */
+    @Override
+    public void contextInitialized(final ServletContextEvent sce) {
+<span class="nc" id="L89">        setFileCleaningTracker(sce.getServletContext(),</span>
+                new FileCleaningTracker());
+<span class="nc" id="L91">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

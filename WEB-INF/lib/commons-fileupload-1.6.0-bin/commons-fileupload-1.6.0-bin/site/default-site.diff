@@ -1,0 +1,32 @@
+Comparing source compatibility of commons-fileupload-1.6.0.jar against commons-fileupload-1.5.jar
+***  MODIFIED CLASS: PUBLIC org.apache.commons.fileupload.disk.DiskFileItem  (not serializable)
+	***! CLASS FILE FORMAT VERSION: 52.0 <- 50.0
+	***  MODIFIED METHOD: PROTECTED void finalize()
+		+++  NEW EXCEPTION: java.lang.Throwable
+**** MODIFIED CLASS: PUBLIC ABSTRACT org.apache.commons.fileupload.FileUploadBase  (not serializable)
+	***! CLASS FILE FORMAT VERSION: 52.0 <- 50.0
+	+++  NEW FIELD: PUBLIC(+) STATIC(+) FINAL(+) java.lang.String MULTIPART_RELATED
+	+++  NEW FIELD: PUBLIC(+) STATIC(+) FINAL(+) int DEFAULT_PART_HEADER_SIZE_MAX
+	**** MODIFIED METHOD: PROTECTED org.apache.commons.fileupload.FileItem createItem(java.util.Map<java.lang.String,java.lang.String><java.lang.String,java.lang.String>, boolean)
+		---  REMOVED EXCEPTION: org.apache.commons.fileupload.FileUploadException
+	+++  NEW METHOD: PUBLIC(+) int getPartHeaderSizeMax()
+	+++  NEW METHOD: PUBLIC(+) void setPartHeaderSizeMax(int)
+***  MODIFIED CLASS: PUBLIC STATIC org.apache.commons.fileupload.FileUploadBase$FileUploadIOException  (compatible)
+	***! CLASS FILE FORMAT VERSION: 52.0 <- 50.0
+	---  REMOVED METHOD: PUBLIC(-) java.lang.Throwable getCause()
+***  MODIFIED CLASS: PUBLIC STATIC org.apache.commons.fileupload.FileUploadBase$IOFileUploadException  (compatible)
+	***! CLASS FILE FORMAT VERSION: 52.0 <- 50.0
+	---  REMOVED METHOD: PUBLIC(-) java.lang.Throwable getCause()
+***  MODIFIED CLASS: PUBLIC org.apache.commons.fileupload.FileUploadException  (compatible)
+	***! CLASS FILE FORMAT VERSION: 52.0 <- 50.0
+	---  REMOVED METHOD: PUBLIC(-) java.lang.Throwable getCause()
+	---  REMOVED METHOD: PUBLIC(-) void printStackTrace(java.io.PrintStream)
+	---  REMOVED METHOD: PUBLIC(-) void printStackTrace(java.io.PrintWriter)
+***  MODIFIED CLASS: PUBLIC org.apache.commons.fileupload.MultipartStream  (not serializable)
+	***! CLASS FILE FORMAT VERSION: 52.0 <- 50.0
+	===  UNCHANGED FIELD: PUBLIC STATIC FINAL int HEADER_PART_SIZE_MAX
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	+++  NEW METHOD: PUBLIC(+) int getPartHeaderSizeMax()
+	+++  NEW METHOD: PUBLIC(+) void setPartHeaderSizeMax(int)
+
+Semantic versioning suggestion: 0.1.0

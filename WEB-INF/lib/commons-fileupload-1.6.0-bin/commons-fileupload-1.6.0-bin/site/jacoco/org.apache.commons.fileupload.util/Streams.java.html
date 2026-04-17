@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Streams.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons FileUpload</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.fileupload.util</a> &gt; <span class="el_source">Streams.java</span></div><h1>Streams.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.fileupload.util;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import org.apache.commons.fileupload.InvalidFileNameException;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.NullOutputStream;
+
+/**
+ * Utility class for working with streams.
+ */
+public final class Streams {
+
+    /**
+     * Default buffer size for use in
+     * {@link #copy(InputStream, OutputStream, boolean)}.
+     */
+    public static final int DEFAULT_BUFFER_SIZE = 8192;
+
+    /**
+     * This convenience method allows to read a
+     * {@link org.apache.commons.fileupload.FileItemStream}'s
+     * content into a string. The platform's default character encoding
+     * is used for converting bytes into characters.
+     *
+     * @param inputStream The input stream to read.
+     * @see #asString(InputStream, String)
+     * @return The streams contents, as a string.
+     * @throws IOException An I/O error occurred.
+     */
+    public static String asString(final InputStream inputStream) throws IOException {
+<span class="nc" id="L51">        final ByteArrayOutputStream baos = new ByteArrayOutputStream();</span>
+<span class="nc" id="L52">        copy(inputStream, baos, true);</span>
+<span class="nc" id="L53">        return baos.toString();</span>
+    }
+
+    /**
+     * This convenience method allows to read a
+     * {@link org.apache.commons.fileupload.FileItemStream}'s
+     * content into a string, using the given character encoding.
+     *
+     * @param inputStream The input stream to read.
+     * @param encoding The character encoding, typically &quot;UTF-8&quot;.
+     * @see #asString(InputStream)
+     * @return The streams contents, as a string.
+     * @throws IOException An I/O error occurred.
+     */
+    public static String asString(final InputStream inputStream, final String encoding) throws IOException {
+<span class="nc" id="L68">        final ByteArrayOutputStream baos = new ByteArrayOutputStream();</span>
+<span class="nc" id="L69">        copy(inputStream, baos, true);</span>
+<span class="nc" id="L70">        return baos.toString(encoding);</span>
+    }
+
+    /**
+     * Checks, whether the given file name is valid in the sense,
+     * that it doesn't contain any NUL characters. If the file name
+     * is valid, it will be returned without any modifications. Otherwise,
+     * an {@link InvalidFileNameException} is raised.
+     *
+     * @param fileName The file name to check
+     * @return Unmodified file name, if valid.
+     * @throws InvalidFileNameException The file name was found to be invalid.
+     */
+    public static String checkFileName(final String fileName) {
+<span class="fc bfc" id="L84" title="All 4 branches covered.">        if (fileName != null  &amp;&amp;  fileName.indexOf('\u0000') != -1) {</span>
+            // fileName.replace(&quot;\u0000&quot;, &quot;\\0&quot;)
+<span class="fc" id="L86">            final StringBuilder sb = new StringBuilder();</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            for (int i = 0;  i &lt; fileName.length();  i++) {</span>
+<span class="fc" id="L88">                final char c = fileName.charAt(i);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">                switch (c) {</span>
+                    case 0:
+<span class="fc" id="L91">                        sb.append(&quot;\\0&quot;);</span>
+<span class="fc" id="L92">                        break;</span>
+                    default:
+<span class="fc" id="L94">                        sb.append(c);</span>
+                        break;
+                }
+            }
+<span class="fc" id="L98">            throw new InvalidFileNameException(fileName,</span>
+                    &quot;Invalid file name: &quot; + sb);
+        }
+<span class="fc" id="L101">        return fileName;</span>
+    }
+
+    /**
+     * Copies the contents of the given {@link InputStream}
+     * to the given {@link OutputStream}. Shortcut for
+     * &lt;pre&gt;
+     *   copy(pInputStream, outputStream, new byte[8192]);
+     * &lt;/pre&gt;
+     *
+     * @param inputStream The input stream, which is being read.
+     * It is guaranteed, that {@link InputStream#close()} is called
+     * on the stream.
+     * @param outputStream The output stream, to which data should
+     * be written. May be null, in which case the input streams
+     * contents are simply discarded.
+     * @param closeOutputStream True guarantees, that {@link OutputStream#close()}
+     * is called on the stream. False indicates, that only
+     * {@link OutputStream#flush()} should be called finally.
+     *
+     * @return Number of bytes, which have been copied.
+     * @throws IOException An I/O error occurred.
+     */
+    public static long copy(final InputStream inputStream, final OutputStream outputStream,
+                            final boolean closeOutputStream)
+            throws IOException {
+<span class="fc" id="L127">        return copy(inputStream, outputStream, closeOutputStream, new byte[DEFAULT_BUFFER_SIZE]);</span>
+    }
+
+    /**
+     * Copies the contents of the given {@link InputStream}
+     * to the given {@link OutputStream}.
+     *
+     * @param inputStream The input stream, which is being read.
+     *   It is guaranteed, that {@link InputStream#close()} is called
+     *   on the stream.
+     * @param outputStream The output stream, to which data should
+     *   be written. May be null, in which case the input streams
+     *   contents are simply discarded.
+     * @param closeOutputStream True guarantees, that {@link OutputStream#close()}
+     *   is called on the stream. False indicates, that only
+     *   {@link OutputStream#flush()} should be called finally.
+     * @param buffer Temporary buffer, which is to be used for
+     *   copying data.
+     * @return Number of bytes, which have been copied.
+     * @throws IOException An I/O error occurred.
+     */
+    public static long copy(final InputStream inputStream, final OutputStream outputStream, final boolean closeOutputStream, final byte[] buffer)
+            throws IOException {
+        try {
+<span class="fc bfc" id="L151" title="All 2 branches covered.">            return IOUtils.copyLarge(inputStream, outputStream != null ? outputStream : NullOutputStream.INSTANCE, buffer);</span>
+        } finally {
+<span class="fc" id="L153">            IOUtils.closeQuietly(inputStream);</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">            if (closeOutputStream) {</span>
+<span class="fc" id="L155">                IOUtils.closeQuietly(outputStream);</span>
+            }
+        }
+    }
+
+    /**
+     * Private constructor, to prevent instantiation.
+     * This class has only static methods.
+     */
+    private Streams() {
+        // Does nothing
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

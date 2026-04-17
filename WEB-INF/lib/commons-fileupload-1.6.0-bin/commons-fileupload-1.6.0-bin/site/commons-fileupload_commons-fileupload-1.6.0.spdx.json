@@ -1,0 +1,1527 @@
+{
+  "SPDXID" : "SPDXRef-DOCUMENT",
+  "spdxVersion" : "SPDX-2.3",
+  "creationInfo" : {
+    "created" : "2025-06-05T14:35:09Z",
+    "creators" : [ "Tool: spdx-maven-plugin" ],
+    "licenseListVersion" : "3.26.0"
+  },
+  "name" : "Apache Commons FileUpload",
+  "dataLicense" : "CC0-1.0",
+  "documentNamespace" : "http://spdx.org/spdxpackages/commons-fileupload_commons-fileupload-1.6.0",
+  "packages" : [ {
+    "SPDXID" : "SPDXRef--26d9d4081",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "JUnit is a unit testing framework for Java, created by Erich Gamma and Kent Beck.",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/junit/junit@4.13.2",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "http://junit.org",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "EPL-1.0",
+    "name" : "JUnit",
+    "originator" : "Organization:JUnit",
+    "summary" : "JUnit is a unit testing framework for Java, created by Erich Gamma and Kent Beck.",
+    "versionInfo" : "4.13.2"
+  }, {
+    "SPDXID" : "SPDXRef--28b74881",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "This is the core API of hamcrest matcher framework to be used by third-party framework providers. This includes the a foundation set of matcher implementations for common operations.",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/org.hamcrest/hamcrest-core@1.3",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "https://github.com/hamcrest/JavaHamcrest/hamcrest-core",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "NOASSERTION",
+    "name" : "Hamcrest Core",
+    "summary" : "This is the core API of hamcrest matcher framework to be used by third-party framework providers. This includes the a foundation set of matcher implementations for common operations.",
+    "versionInfo" : "1.3"
+  }, {
+    "SPDXID" : "SPDXRef--3c665c041",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "Module \"junit-platform-engine\" of JUnit 5.",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/org.junit.platform/junit-platform-engine@1.12.2",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "https://junit.org/junit5/",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "NOASSERTION",
+    "name" : "JUnit Platform Engine API",
+    "summary" : "Module \"junit-platform-engine\" of JUnit 5.",
+    "versionInfo" : "1.12.2"
+  }, {
+    "SPDXID" : "SPDXRef--4745193a1",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "The Apache Commons IO library contains utility classes, stream implementations, file filters,\nfile comparators, endian transformation classes, and much more.",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/commons-io/commons-io@2.19.0",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "https://commons.apache.org/proper/commons-io/",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "Apache-2.0",
+    "name" : "Apache Commons IO",
+    "originator" : "Organization:The Apache Software Foundation",
+    "summary" : "The Apache Commons IO library contains utility classes, stream implementations, file filters,\nfile comparators, endian transformation classes, and much more.",
+    "versionInfo" : "2.19.0"
+  }, {
+    "SPDXID" : "SPDXRef--4831b1a31",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "@API Guardian",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/org.apiguardian/apiguardian-api@1.1.2",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "https://github.com/apiguardian-team/apiguardian",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "Apache-2.0",
+    "name" : "org.apiguardian:apiguardian-api",
+    "summary" : "@API Guardian",
+    "versionInfo" : "1.1.2"
+  }, {
+    "SPDXID" : "SPDXRef--4b3779bf1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "2392704cccb4632b3ccd9b8cfbe2943cca6fc455"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "description" : "The Apache Commons FileUpload component provides a simple yet flexible means of adding support for multipart\n    file upload functionality to servlets and web applications.",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/commons-fileupload/commons-fileupload@1.6.0",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : true,
+    "homepage" : "https://commons.apache.org/proper/commons-fileupload/",
+    "licenseConcluded" : "Apache-2.0",
+    "licenseDeclared" : "Apache-2.0",
+    "licenseInfoFromFiles" : [ "NOASSERTION" ],
+    "name" : "Apache Commons FileUpload",
+    "originator" : "Organization:The Apache Software Foundation",
+    "packageFileName" : "commons-fileupload-1.6.0.jar",
+    "packageVerificationCode" : {
+      "packageVerificationCodeValue" : "b4622154ad42b0697cc67b28ef1c6ddbf3ab0f3e"
+    },
+    "primaryPackagePurpose" : "LIBRARY",
+    "summary" : "The Apache Commons FileUpload component provides a simple yet flexible means of adding support for multipart\n    file upload functionality to servlets and web applications.",
+    "supplier" : "Organization: The Apache Software Foundation",
+    "versionInfo" : "1.6.0"
+  }, {
+    "SPDXID" : "SPDXRef--5d8c3ec1",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "Module \"junit-jupiter-api\" of JUnit 5.",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/org.junit.jupiter/junit-jupiter-api@5.12.2",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "https://junit.org/junit5/",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "NOASSERTION",
+    "name" : "JUnit Jupiter API",
+    "summary" : "Module \"junit-jupiter-api\" of JUnit 5.",
+    "versionInfo" : "5.12.2"
+  }, {
+    "SPDXID" : "SPDXRef--7700bd2e1",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "Module \"junit-platform-commons\" of JUnit 5.",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/org.junit.platform/junit-platform-commons@1.12.2",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "https://junit.org/junit5/",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "NOASSERTION",
+    "name" : "JUnit Platform Commons",
+    "summary" : "Module \"junit-platform-commons\" of JUnit 5.",
+    "versionInfo" : "1.12.2"
+  }, {
+    "SPDXID" : "SPDXRef-22f409121",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "Module \"junit-vintage-engine\" of JUnit 5.",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/org.junit.vintage/junit-vintage-engine@5.12.2",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "https://junit.org/junit5/",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "NOASSERTION",
+    "name" : "JUnit Vintage Engine",
+    "summary" : "Module \"junit-vintage-engine\" of JUnit 5.",
+    "versionInfo" : "5.12.2"
+  }, {
+    "SPDXID" : "SPDXRef-28b5ee041",
+    "copyrightText" : "UNSPECIFIED",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/javax.servlet/servlet-api@2.5",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "NOASSERTION",
+    "name" : "servlet-api",
+    "versionInfo" : "2.5"
+  }, {
+    "SPDXID" : "SPDXRef-3ebfd5cd1",
+    "copyrightText" : "UNSPECIFIED",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/portlet-api/portlet-api@1.0",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "NOASSERTION",
+    "name" : "portlet-api",
+    "versionInfo" : "1.0"
+  }, {
+    "SPDXID" : "SPDXRef-60dab2ee1",
+    "copyrightText" : "UNSPECIFIED",
+    "description" : "Open Test Alliance for the JVM",
+    "downloadLocation" : "NOASSERTION",
+    "externalRefs" : [ {
+      "referenceCategory" : "PACKAGE-MANAGER",
+      "referenceLocator" : "pkg:maven/org.opentest4j/opentest4j@1.3.0",
+      "referenceType" : "purl"
+    } ],
+    "filesAnalyzed" : false,
+    "homepage" : "https://github.com/ota4j-team/opentest4j",
+    "licenseConcluded" : "NOASSERTION",
+    "licenseDeclared" : "Apache-2.0",
+    "name" : "org.opentest4j:opentest4j",
+    "summary" : "Open Test Alliance for the JVM",
+    "versionInfo" : "1.3.0"
+  } ],
+  "files" : [ {
+    "SPDXID" : "SPDXRef--11ba627a1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "366ece2e0a9456c2fe8a96af9c26ca1a17073b90"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/package-info.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--20018c831",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "69e2e87b0ed317c2f0b95b38c74c8b23b43bc225"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/Util.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--262e67001",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "f539ae0e9df330985d6f7c4bf29a063c0d33d303"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/ParameterParser.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--265fb5d21",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "7bb32e551ef45894a1a888d911096fa4151b7170"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/mime/ParseException.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--2910741d1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "d0c8e461c61ed42c71b9d27a6e5d2c1d3a01298f"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/package-info.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--2d5047f01",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "55fff8b184a486f71f6191f0d64f2ea423f13f9e"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/FileUploadTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--365fcdc21",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "48cf0cfafbbdb84470e4e40e0af2a5137109cb89"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/RFC2231UtilityTestCase.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--3b9222051",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "4f2f1aa14892b9b52c6b4041ec6e774d5b5e166e"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileUpload.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--3c4e062e1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "7de691c2ea006961d6c4834a0e25c134dbac5839"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/Constants.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--402054801",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "1f78e1e6b7047c03f393e4184b66443c30552e1c"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileItemHeadersSupport.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--435772531",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "1ac8ed08ea296cb5cf1b03b8802add179c044572"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/StreamingTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--44834da51",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "78694f40a9e10e97095c390a9b6be6840fd1cdbb"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileItemIterator.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--47ee04221",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "d8d2843f06457685fbcb6005114b364750072107"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/DefaultFileItemFactory.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--4c86559f1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "f68eaaa5b2c43d7dba8c20555e2c674f2d2609a5"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/disk/package-info.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--51e4cafa1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "55216d290c65da5be9a055a0a42a8bef1ed51992"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--526ebf011",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "b1335fb333aceb982945ea0b12a3d7bdbcac62a8"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/DefaultFileItemTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--562976a41",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "959c38fdd73277cc86dc655bfbc37a45c0ebe744"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/MultipartStream.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--58d21deb1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "a99348a31290da7eb8ec329f138b0c555f4d467b"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/util/mime/MimeUtilityTestCase.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--5bd56c1d1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "74eb78d741e99d2ba56f00c2b1806d5c3f434a92"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--5e5ed4f21",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "e9935e61aae7a160179a076f96c126de9d9a3a26"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/portlet/package-info.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--60bbb53e1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "2b8b815229aa8a61e483fb4ba0588b8b6c491890"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./LICENSE.txt",
+    "fileTypes" : [ "TEXT" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--67266cf61",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "69f73421d45450825042ff1654a6d07a18a13736"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/disk/DiskFileItem.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--6aadf9991",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "35857bb09be3dab07e4960a7e27b6fcfb5b0a018"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/InvalidFileNameException.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--719a45a81",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "a3d0c5dc78f6b5af71636472380f3f699cb3d57b"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/RequestContext.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--72132ce91",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "05de25cac9a63852512d4da05eb99a04ea17db94"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/ProgressListener.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--76d76d251",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "ff7fa5012a4f952f5751afe874643a5ed71a91b0"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./NOTICE.txt",
+    "fileTypes" : [ "TEXT" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--7af8bbd61",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "cf80c80dc8b16cc4f034190bfccf4dc151e623f1"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileUploadBase.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--7f8b464f1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "073bc519049a964663971475e5bb2c083049f45a"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileItemHeaders.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--c89e44d1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "571a706d3201b7e0d240ae632f31f775859b8077"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/DiskFileUploadTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef--eff531",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8e3ccde741896c2463a0dbb258c676a5433faff4"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/portlet/PortletFileUploadTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-130d33181",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "3e46ea3293e55467e471424ed9f0d101c1929194"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/DefaultFileItem.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-1460d77a1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "a9616a4e106d106728247b104687b40da3cd4216"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/UploadContext.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-15d1cfa31",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "ff9c638f2139bb6a0b57209dc8a8e2e8bc35521d"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/MockHttpServletRequest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-174927ac1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "468cac5e4ec7d131e6352f46d917ff282add8d87"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/disk/DiskFileItemFactory.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-1a4d9dec1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "225f53171b0988747f32570a682d8e47d05d44dd"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/ProgressListenerTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-1c158e361",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "94f6c33f28bdf20fdbe86d7466db19e117f3cc30"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileUploadException.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-22c2cffb1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "75d05fcf1bcf6af24b38cc192862d186406b909f"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/DiskFileItemSerializeTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-232260c91",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "e339682e46670669c165ece8f099db0a9067ec58"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileItemStream.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-237d51ea1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "a8fdcb62745bf5ab32f8a58965023e778d27cf72"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/util/mime/QuotedPrintableDecoderTestCase.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-2c6f5bfd1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "31c9d3ac2c09d4304b290225c5da53351ff2939a"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/SizesTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-2d1519c11",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "3a6969474ec1caf6cb383c786a60bf277e9dc811"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/portlet/MockPortletActionRequest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-3690c8b01",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "a5d654187e9721a3e6a587b5232287f294c26d6e"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-377cfdeb1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "0da95aa136288109132a2e7d43f2ea8c0dc3c919"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/LimitedInputStream.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-3e4230531",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8b8e89682993c2ef9a8ee7faaa19c52ce2690253"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/Closeable.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-40605441",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "0533c47271478eca8cfb818b58e5cbe81ec5c0f8"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/servlet/FileCleanerCleanup.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-454eae651",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "1d4a3b3b55f91738fb56a87792472fb92363f116"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/mime/QuotedPrintableDecoder.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-4e6b8ef91",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "12efaa9667c43aaa1960fb0f1de5625c99a886fc"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/RFC2231Utility.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-52893d141",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "5d41a6bf9b4a7348b1d6e25eb58cd914521d5ad3"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileCountLimitExceededException.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-555665751",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "157e0992ec7033471c340c860c97e39b441122ce"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/mime/package-info.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-61085f291",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "af212045eeefa0ae202d05dd4adce360bd7157ec"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileItem.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-632df2991",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "b874c264831eb1b8c9f7f6dcabca774deef2ff0b"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/servlet/package-info.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-63614aad1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "0ff4c55a498c4dca5c8595807fde452e0e3a770c"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/FileItemFactory.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-66c0af571",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "c827429cdc8950a2fa9965439053aee73a4a1b59"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/servlet/ServletFileUploadTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-686e64921",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "9dfec72a82b704e22745794e6620e8e58d49be33"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/Streams.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-6a45269e1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "f2da90f3769027b1b12200cb95830aae95f63e5c"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/DiskFileUpload.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-741e13ee1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8f882aca1d8a75f153aba7e86d4d0c33dc53c260"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/FileItemHeadersImpl.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-777dd5431",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "25098374b1f993f80b9c747a74395f3d502f4b0e"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/MultipartStreamTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-7831d3181",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "740cd8778a309c1ca19581b515b2bf38d0769867"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/FileItemHeadersTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-78b6e5491",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "2e941b4adfd7c4435c3406c9d04a600fe3797d4f"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/HttpServletRequestFactory.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-99f6dbe1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "84745de544d7f02f9199f9b9feb11a26657187c8"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/util/mime/MimeUtility.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-afa428d1",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "8867ee5d56287aabb7acb026344dc7fc100ff080"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/main/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  }, {
+    "SPDXID" : "SPDXRef-e6072e71",
+    "checksums" : [ {
+      "algorithm" : "SHA1",
+      "checksumValue" : "ec6e71b03f9137046bd21e46d193c143f4efba98"
+    } ],
+    "copyrightText" : "NOASSERTION",
+    "fileName" : "./src/test/java/org/apache/commons/fileupload/ParameterParserTest.java",
+    "fileTypes" : [ "SOURCE" ],
+    "licenseConcluded" : "NOASSERTION",
+    "licenseInfoInFiles" : [ "NOASSERTION" ]
+  } ],
+  "relationships" : [ {
+    "spdxElementId" : "SPDXRef-DOCUMENT",
+    "relationshipType" : "DESCRIBES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--11ba627a1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--20018c831",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--262e67001",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--265fb5d21",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--2910741d1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--2d5047f01",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--365fcdc21",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--3b9222051",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--3c4e062e1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--402054801",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--435772531",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--44834da51",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--47ee04221",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--4c86559f1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--51e4cafa1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--526ebf011",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--562976a41",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--58d21deb1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--5bd56c1d1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--5e5ed4f21",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--60bbb53e1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--67266cf61",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--6aadf9991",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--719a45a81",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--72132ce91",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--76d76d251",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--7af8bbd61",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--7f8b464f1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--c89e44d1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--eff531",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-130d33181",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-1460d77a1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-15d1cfa31",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-174927ac1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-1a4d9dec1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-1c158e361",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-22c2cffb1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-232260c91",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-237d51ea1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-2c6f5bfd1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-2d1519c11",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-3690c8b01",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-377cfdeb1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-3e4230531",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-40605441",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-454eae651",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-4e6b8ef91",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-52893d141",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-555665751",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-61085f291",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-632df2991",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-63614aad1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-66c0af571",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-686e64921",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-6a45269e1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-741e13ee1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-777dd5431",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-7831d3181",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-78b6e5491",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-99f6dbe1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-afa428d1",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef-e6072e71",
+    "relationshipType" : "GENERATES",
+    "relatedSpdxElement" : "SPDXRef--4b3779bf1",
+    "comment" : ""
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "DYNAMIC_LINK",
+    "relatedSpdxElement" : "SPDXRef--4745193a1",
+    "comment" : "Relationship based on Maven POM file dependency information"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "OTHER",
+    "relatedSpdxElement" : "SPDXRef-28b5ee041",
+    "comment" : "Relationship based on Maven POM file dependency information"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "OTHER",
+    "relatedSpdxElement" : "SPDXRef-3ebfd5cd1",
+    "comment" : "Relationship based on Maven POM file dependency information"
+  }, {
+    "spdxElementId" : "SPDXRef-22f409121",
+    "relationshipType" : "TEST_DEPENDENCY_OF",
+    "relatedSpdxElement" : "SPDXRef--26d9d4081",
+    "comment" : "Relationship created based on Maven POM information"
+  }, {
+    "spdxElementId" : "SPDXRef--26d9d4081",
+    "relationshipType" : "TEST_DEPENDENCY_OF",
+    "relatedSpdxElement" : "SPDXRef--28b74881",
+    "comment" : "Relationship created based on Maven POM information"
+  }, {
+    "spdxElementId" : "SPDXRef-22f409121",
+    "relationshipType" : "TEST_DEPENDENCY_OF",
+    "relatedSpdxElement" : "SPDXRef--3c665c041",
+    "comment" : "Relationship created based on Maven POM information"
+  }, {
+    "spdxElementId" : "SPDXRef-22f409121",
+    "relationshipType" : "TEST_DEPENDENCY_OF",
+    "relatedSpdxElement" : "SPDXRef--4831b1a31",
+    "comment" : "Relationship created based on Maven POM information"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "TEST_DEPENDENCY_OF",
+    "relatedSpdxElement" : "SPDXRef--5d8c3ec1",
+    "comment" : "Relationship created based on Maven POM information"
+  }, {
+    "spdxElementId" : "SPDXRef--5d8c3ec1",
+    "relationshipType" : "TEST_DEPENDENCY_OF",
+    "relatedSpdxElement" : "SPDXRef--7700bd2e1",
+    "comment" : "Relationship created based on Maven POM information"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "TEST_DEPENDENCY_OF",
+    "relatedSpdxElement" : "SPDXRef-22f409121",
+    "comment" : "Relationship created based on Maven POM information"
+  }, {
+    "spdxElementId" : "SPDXRef--5d8c3ec1",
+    "relationshipType" : "TEST_DEPENDENCY_OF",
+    "relatedSpdxElement" : "SPDXRef-60dab2ee1",
+    "comment" : "Relationship created based on Maven POM information"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--11ba627a1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--20018c831"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--262e67001"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--265fb5d21"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--2910741d1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--2d5047f01"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--365fcdc21"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--3b9222051"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--3c4e062e1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--402054801"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--435772531"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--44834da51"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--47ee04221"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--4c86559f1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--51e4cafa1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--526ebf011"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--562976a41"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--58d21deb1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--5bd56c1d1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--5e5ed4f21"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--60bbb53e1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--67266cf61"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--6aadf9991"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--719a45a81"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--72132ce91"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--76d76d251"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--7af8bbd61"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--7f8b464f1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--c89e44d1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef--eff531"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-130d33181"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-1460d77a1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-15d1cfa31"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-174927ac1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-1a4d9dec1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-1c158e361"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-22c2cffb1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-232260c91"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-237d51ea1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-2c6f5bfd1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-2d1519c11"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-3690c8b01"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-377cfdeb1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-3e4230531"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-40605441"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-454eae651"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-4e6b8ef91"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-52893d141"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-555665751"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-61085f291"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-632df2991"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-63614aad1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-66c0af571"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-686e64921"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-6a45269e1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-741e13ee1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-777dd5431"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-7831d3181"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-78b6e5491"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-99f6dbe1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-afa428d1"
+  }, {
+    "spdxElementId" : "SPDXRef--4b3779bf1",
+    "relationshipType" : "CONTAINS",
+    "relatedSpdxElement" : "SPDXRef-e6072e71"
+  } ]
+}
