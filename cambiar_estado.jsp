@@ -19,7 +19,7 @@ if ("POST".equals(request.getMethod())) {
             try {
                 con = Conexion.getConexion();
                 PreparedStatement ps = con.prepareStatement(
-                    "UPDATE pedidos SET estado = ? WHERE id = ?"
+                "UPDATE pedidos SET estado = ?::metodo_tipo WHERE id = ?"
                 );
                 ps.setString(1, nuevoEst);
                 ps.setInt(2, pid);
