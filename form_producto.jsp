@@ -22,7 +22,7 @@ String valNombre = "", valCat = "Bebida", valPrecio = "", valStock = "", valImg 
 if (esEdicion) {
     Connection c = null;
     try {
-        c = Conexion.getConnection();
+        c = Conexion.getConexion();
         PreparedStatement ps = c.prepareStatement("SELECT * FROM productos WHERE id = ?");
         ps.setInt(1, editId);
         ResultSet rs = ps.executeQuery();
@@ -77,7 +77,7 @@ if ("POST".equals(request.getMethod())) {
     } else {
         Connection c = null;
         try {
-            c = Conexion.getConnection();
+            c = Conexion.getConexion()
             if (esEdicion) {
                 PreparedStatement ps = c.prepareStatement(
                     "UPDATE productos SET nombre=?, cat=?, precio=?, stock=?, img_url=? WHERE id=?"
