@@ -10,7 +10,7 @@ String msg = "";
 
 /* ── POST: cambiar estado ───────────────────────────────── */
 if ("POST".equals(request.getMethod())) {
-    String pidStr  = request.getParameter("pedido_id");
+    String pidStr   = request.getParameter("pedido_id");
     String nuevoEst = request.getParameter("estado");
     try {
         int pid = Integer.parseInt(pidStr);
@@ -19,15 +19,17 @@ if ("POST".equals(request.getMethod())) {
             try {
                 con = Conexion.getConexion();
                 PreparedStatement ps = con.prepareStatement(
-                "UPDATE pedidos SET estado = ?::metodo_tipo WHERE id = ?"
+                    "UPDATE pedidos SET estado = ?::estado_tipo WHERE id = ?"
                 );
                 ps.setString(1, nuevoEst);
                 ps.setInt(2, pid);
-                ps.executeUpdate();
-                msg = "ok:" + pid;
+                int rows = ps.executeUpdate();
+                msg = "ok:" + pid + " (rows=" + rows + ")";
             } finally {
                 if (con != null) try { con.close(); } catch (Exception ignored) {}
             }
+        } else {
+            msg = "error: estado invalido = " + nuevoEst;
         }
     } catch (Exception ex) {
         msg = "error:" + ex.getMessage();
