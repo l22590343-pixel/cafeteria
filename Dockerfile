@@ -1,6 +1,13 @@
 FROM maven:3.9-eclipse-temurin-11 AS build
 WORKDIR /app
 COPY . .
+
+# Compilar Conexion.java
+RUN mkdir -p WEB-INF/classes/util && \
+    javac -cp "WEB-INF/lib/postgresql-42.7.3.jar" \
+    -d WEB-INF/classes \
+    WEB-INF/classes/util/Conexion.java
+
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:11-jdk
@@ -13,6 +20,9 @@ RUN apt-get update && apt-get install -y wget && \
     rm apache-tomcat-9.0.85.tar.gz
 
 COPY --from=build /app/target/cafeteria.war /opt/tomcat/webapps/cafeteria.war
+
+# Copiar el driver de PostgreSQL directamente a Tomcat lib
+COPY --from=build /app/WEB-INF/lib/postgresql-42.7.3.jar /opt/tomcat/lib/postgresql-42.7.3.jar
 
 ENV PORT=8080
 EXPOSE 8080
