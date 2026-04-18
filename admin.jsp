@@ -40,7 +40,7 @@ try {
 /* ── Conteo de pedidos activos ──────────────────────────── */
 int pedidosActivos = 0;
 try {
-    con = Conexion.getConexion()
+    con = Conexion.getConexion();
     PreparedStatement ps = con.prepareStatement(
         "SELECT COUNT(*) FROM pedidos WHERE estado != 'entregado'"
     );
