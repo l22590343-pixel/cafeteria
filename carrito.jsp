@@ -227,16 +227,19 @@ function procederPago() {
   }
 
   // Validar datos de tarjeta si eligió tarjeta
-  if (metodoPago === 'tarjeta') {
-    var num  = document.getElementById('card-num').value.replace(/\s/g,'');
-    var name = document.getElementById('card-name').value.trim();
-    var exp  = document.getElementById('card-exp').value.trim();
-    var cvv  = document.getElementById('card-cvv').value.trim();
-    if (num.length < 16 || name === '' || exp.length < 5 || cvv.length < 3) {
-      alert('⚠️ Completa todos los datos de la tarjeta.');
-      return;
-    }
+function procederPago() {
+  if (!metodoPago) {
+    document.getElementById('error-pago').style.display = 'block';
+    document.getElementById('error-pago').scrollIntoView({behavior:'smooth'});
+    return;
   }
+
+  if (metodoPago === 'efectivo') {
+    document.getElementById('form-efectivo').submit();
+  } else {
+    document.getElementById('form-tarjeta-redir').submit();
+  }
+}
 
   if (metodoPago === 'efectivo') {
     document.getElementById('form-efectivo').submit();
