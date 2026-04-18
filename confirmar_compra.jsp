@@ -39,7 +39,7 @@ try {
 
     /* 1) Crear pedido */
     PreparedStatement insPedido = con.prepareStatement(
-        "INSERT INTO pedidos (usuario_id, total, estado, metodo_pago) VALUES (?, ?, 'preparacion', ?)",
+        "INSERT INTO pedidos (usuario_id, total, estado, metodo_pago) VALUES (?, ?, 'preparacion'::metodo_tipo, ?::metodo_tipo)",
         Statement.RETURN_GENERATED_KEYS
     );
     insPedido.setInt(1, userId);
