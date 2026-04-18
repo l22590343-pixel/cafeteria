@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:11-jre
+FROM eclipse-temurin:11-jdk
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y wget && \
