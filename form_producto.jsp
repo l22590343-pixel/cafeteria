@@ -77,7 +77,7 @@ if ("POST".equals(request.getMethod())) {
     } else {
         Connection c = null;
         try {
-            c = Conexion.getConexion()
+            c = Conexion.getConexion();
             if (esEdicion) {
                 PreparedStatement ps = c.prepareStatement(
                     "UPDATE productos SET nombre=?, cat=?, precio=?, stock=?, img_url=? WHERE id=?"
