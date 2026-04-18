@@ -23,7 +23,7 @@ if ("POST".equals(request.getMethod())) {
     } else {
         Connection con = null;
         try {
-            con = Conexion.getConnection();
+            con = Conexion.getConexion();
             /* PostgreSQL usa $1, $2 para parámetros (o ? también funciona con JDBC) */
             PreparedStatement ps = con.prepareStatement(
                 "SELECT id, nombre, rol FROM usuarios WHERE usuario = ? AND pass = ?"

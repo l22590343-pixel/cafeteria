@@ -13,7 +13,7 @@ try { prodId = Integer.parseInt(idParam); } catch (Exception e) {}
 if (prodId > 0) {
     Connection con = null;
     try {
-        con = Conexion.getConnection();
+        con = Conexion.getConexion();
         /* Marcar como inactivo en lugar de borrar para no romper historial de pedidos */
         PreparedStatement ps = con.prepareStatement(
             "UPDATE productos SET activo = FALSE WHERE id = ?"

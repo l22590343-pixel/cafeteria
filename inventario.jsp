@@ -15,7 +15,7 @@ int stockBajo     = 0;
 Connection con    = null;
 
 try {
-    con = Conexion.getConnection();
+    con = Conexion.getConexion();
     PreparedStatement ps = con.prepareStatement(
         "SELECT id, nombre, cat, precio, stock FROM productos WHERE activo = TRUE ORDER BY stock ASC, nombre ASC"
     );

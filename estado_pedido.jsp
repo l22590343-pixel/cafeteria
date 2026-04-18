@@ -24,7 +24,7 @@ java.util.List<String[]> items = new java.util.ArrayList<>();
 
 Connection con = null;
 try {
-    con = Conexion.getConnection();
+    con = Conexion.getConexion();
 
     /* Solo puede ver sus propios pedidos (o admin ve todos) */
     String rol = (String) session.getAttribute("rol");

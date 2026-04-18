@@ -34,7 +34,7 @@ String errorMsg  = null;
 Connection con   = null;
 
 try {
-    con = Conexion.getConnection();
+    con = Conexion.getConexion();
     con.setAutoCommit(false);   // Transacción
 
     /* 1) Crear pedido */

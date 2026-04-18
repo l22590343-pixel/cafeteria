@@ -26,7 +26,7 @@ if ("POST".equals(request.getMethod())) {
     } else {
         Connection con = null;
         try {
-            con = Conexion.getConnection();
+            con = Conexion.getConexion();
             /* Verificar si el usuario ya existe */
             PreparedStatement check = con.prepareStatement("SELECT id FROM usuarios WHERE usuario = ?");
             check.setString(1, user);

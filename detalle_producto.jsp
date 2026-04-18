@@ -22,7 +22,7 @@ String  errorMsg = "";
 
 Connection con = null;
 try {
-    con = Conexion.getConnection();
+    con = Conexion.getConexion();
     PreparedStatement ps = con.prepareStatement(
         "SELECT nombre, cat, precio, stock, img_url FROM productos WHERE id = ? AND activo = TRUE"
     );

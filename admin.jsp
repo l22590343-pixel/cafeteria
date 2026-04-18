@@ -14,7 +14,7 @@ String msgOk    = request.getParameter("msg") != null ? request.getParameter("ms
 List<Map<String,Object>> productos = new ArrayList<>();
 Connection con = null;
 try {
-    con = Conexion.getConnection();
+    con = Conexion.getConexion();
     String sql = busqueda.isEmpty()
         ? "SELECT id, nombre, cat, precio, stock, img_url FROM productos WHERE activo = TRUE ORDER BY id"
         : "SELECT id, nombre, cat, precio, stock, img_url FROM productos WHERE activo = TRUE AND LOWER(nombre) LIKE LOWER(?) ORDER BY id";

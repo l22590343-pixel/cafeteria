@@ -17,7 +17,7 @@ if ("POST".equals(request.getMethod())) {
         if (nuevoEst != null && nuevoEst.matches("preparacion|listo|entregado")) {
             Connection con = null;
             try {
-                con = Conexion.getConnection();
+                con = Conexion.getConexion();
                 PreparedStatement ps = con.prepareStatement(
                     "UPDATE pedidos SET estado = ? WHERE id = ?"
                 );
@@ -38,7 +38,7 @@ if ("POST".equals(request.getMethod())) {
 java.util.List<Object[]> pedidos = new java.util.ArrayList<>();
 Connection con = null;
 try {
-    con = Conexion.getConnection();
+    con = Conexion.getConexion();
     PreparedStatement ps = con.prepareStatement(
         "SELECT p.id, p.estado, p.metodo_pago, p.total, p.fecha, u.usuario " +
         "FROM pedidos p JOIN usuarios u ON p.usuario_id = u.id " +

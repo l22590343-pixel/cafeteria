@@ -16,7 +16,7 @@ String busqueda = request.getParameter("q") != null ? request.getParameter("q").
 List<Map<String,Object>> productos = new ArrayList<>();
 Connection con = null;
 try {
-    con = Conexion.getConnection();
+    con = Conexion.getConexion();
     String sql = busqueda.isEmpty()
         ? "SELECT id, nombre, cat, precio, stock, img_url FROM productos WHERE activo = TRUE ORDER BY cat, nombre"
         : "SELECT id, nombre, cat, precio, stock, img_url FROM productos WHERE activo = TRUE AND LOWER(nombre) LIKE LOWER(?) ORDER BY cat, nombre";
@@ -53,7 +53,7 @@ for (Map<String,Object> cartItem : cart) {
 /* ── Mis pedidos (para mostrar en menú) ─────────────────── */
 List<Map<String,Object>> misPedidos = new ArrayList<>();
 try {
-    con = Conexion.getConnection();
+    con = Conexion.getConexion();
     PreparedStatement ps = con.prepareStatement(
         "SELECT id, total, estado, metodo_pago, fecha FROM pedidos " +
         "WHERE usuario_id = ? AND estado != 'entregado' ORDER BY id DESC LIMIT 5"
