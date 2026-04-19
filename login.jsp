@@ -24,16 +24,14 @@ if ("POST".equals(request.getMethod())) {
         Connection con = null;
         try {
             con = Conexion.getConexion();
-            /* PostgreSQL usa $1, $2 para parámetros (o ? también funciona con JDBC) */
             PreparedStatement ps = con.prepareStatement(
                 "SELECT id, nombre, rol FROM usuarios WHERE usuario = ? AND pass = ?"
             );
             ps.setString(1, user);
-            ps.setString(2, pass);   /* En producción usar BCrypt */
+            ps.setString(2, pass);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                /* Login exitoso — guardar sesión */
                 session.setAttribute("userId",   rs.getInt("id"));
                 session.setAttribute("username", user);
                 session.setAttribute("nombre",   rs.getString("nombre"));
@@ -56,6 +54,19 @@ if ("POST".equals(request.getMethod())) {
 /* Mensaje de registro exitoso */
 String regMsg = "ok".equals(request.getParameter("registro"))
                 ? "✅ Registro exitoso. Ahora inicia sesión." : "";
+
+/* Error de Google */
+String googleError = request.getParameter("error") != null
+                ? "⚠️ " + request.getParameter("error") : "";
+
+/* URL de Google OAuth */
+String clientId = System.getenv("GOOGLE_CLIENT_ID");
+String googleUrl = "https://accounts.google.com/o/oauth2/v2/auth"
+    + "?client_id=" + clientId
+    + "&redirect_uri=https://cafeteria-production-d4cf.up.railway.app/cafeteria/callback.jsp"
+    + "&response_type=code"
+    + "&scope=openid%20email%20profile"
+    + "&prompt=select_account";
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -69,7 +80,7 @@ String regMsg = "ok".equals(request.getParameter("registro"))
   *{margin:0;padding:0;box-sizing:border-box;}
   body{
     font-family:'DM Sans',sans-serif;
-    background: url('img/cafeteria_bg.jpg') center/cover no-repeat;
+    background:var(--cream);
     color:var(--espresso);min-height:100vh;
     display:flex;flex-direction:column;
     align-items:center;justify-content:center;
@@ -95,9 +106,22 @@ String regMsg = "ok".equals(request.getParameter("registro"))
   .btn-primary:hover{background:#1a0f05;transform:translateY(-1px);}
   .btn-secondary{background:var(--latte);color:var(--espresso);}
   .btn-secondary:hover{background:#d4b07a;}
+  .btn-google{
+    background:white;color:#3c4043;
+    border:2px solid #dadce0;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    font-size:.95rem;font-weight:600;
+    border-radius:12px;padding:12px;
+    cursor:pointer;width:100%;margin-bottom:10px;
+    transition:all .2s;text-decoration:none;
+  }
+  .btn-google:hover{background:#f8f9fa;border-color:#c1c7cd;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+  .btn-google img{width:20px;height:20px;}
   .alert-error{background:#fdecea;border:1px solid #f5c2c2;color:#b94a48;padding:12px 14px;border-radius:10px;margin-bottom:16px;font-size:.88rem;}
   .alert-ok{background:#e8f5ee;border:1px solid #a8d5b8;color:#2d6a4f;padding:12px 14px;border-radius:10px;margin-bottom:16px;font-size:.88rem;}
-  .divider{height:1px;background:var(--latte);margin:16px 0;opacity:.5;}
+  .divider{display:flex;align-items:center;gap:10px;margin:16px 0;}
+  .divider span{font-size:.8rem;color:#b8a88a;white-space:nowrap;}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--latte);}
 </style>
 </head>
 <body>
@@ -114,6 +138,17 @@ String regMsg = "ok".equals(request.getParameter("registro"))
   <% if (!regMsg.isEmpty()) { %>
   <div class="alert-ok"><%= regMsg %></div>
   <% } %>
+  <% if (!googleError.isEmpty()) { %>
+  <div class="alert-error"><%= googleError %></div>
+  <% } %>
+
+  <!-- Botón Google -->
+  <a href="<%= googleUrl %>" class="btn-google">
+    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+    Continuar con Google
+  </a>
+
+  <div class="divider"><span>o inicia con tu cuenta</span></div>
 
   <form method="post" action="login.jsp">
     <div class="form-group">
@@ -128,7 +163,6 @@ String regMsg = "ok".equals(request.getParameter("registro"))
   </form>
 
   <a href="registro.jsp" class="btn btn-secondary">Registrarse</a>
-  <div class="divider"></div>
 </div>
 </body>
 </html>
