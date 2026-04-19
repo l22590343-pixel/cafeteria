@@ -7,14 +7,17 @@ String error   = "";
 String success = "";
 
 if ("POST".equals(request.getMethod())) {
-    String nombre = request.getParameter("nombre") != null ? request.getParameter("nombre").trim() : "";
-    String user   = request.getParameter("usuario") != null ? request.getParameter("usuario").trim() : "";
-    String pass   = request.getParameter("pass")    != null ? request.getParameter("pass")           : "";
-    String pass2  = request.getParameter("pass2")   != null ? request.getParameter("pass2")          : "";
+    String nombre  = request.getParameter("nombre")  != null ? request.getParameter("nombre").trim()  : "";
+    String user    = request.getParameter("usuario") != null ? request.getParameter("usuario").trim()  : "";
+    String correo  = request.getParameter("correo")  != null ? request.getParameter("correo").trim()   : "";
+    String pass    = request.getParameter("pass")    != null ? request.getParameter("pass")            : "";
+    String pass2   = request.getParameter("pass2")   != null ? request.getParameter("pass2")           : "";
 
     /* Validaciones */
-    if (nombre.isEmpty() || user.isEmpty() || pass.isEmpty()) {
+    if (nombre.isEmpty() || user.isEmpty() || correo.isEmpty() || pass.isEmpty()) {
         error = "Completa todos los campos.";
+    } else if (!correo.contains("@") || !correo.contains(".")) {
+        error = "Ingresa un correo electrónico válido.";
     } else if (!pass.equals(pass2)) {
         error = "Las contraseñas no coinciden.";
     } else if (pass.length() < 8
@@ -36,11 +39,12 @@ if ("POST".equals(request.getMethod())) {
             } else {
                 /* Insertar nuevo usuario */
                 PreparedStatement ins = con.prepareStatement(
-                    "INSERT INTO usuarios (nombre, usuario, pass, rol) VALUES (?, ?, ?, 'cliente')"
+                    "INSERT INTO usuarios (nombre, usuario, pass, rol, correo) VALUES (?, ?, ?, 'cliente'::rol_tipo, ?)"
                 );
                 ins.setString(1, nombre);
                 ins.setString(2, user);
-                ins.setString(3, pass);   /* En producción usar BCrypt */
+                ins.setString(3, pass);
+                ins.setString(4, correo);
                 ins.executeUpdate();
                 success = "ok";
             }
@@ -83,7 +87,6 @@ if ("POST".equals(request.getMethod())) {
   .btn{width:100%;padding:14px;border:none;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;margin-bottom:10px;}
   .btn-primary{background:var(--espresso);color:var(--cream);}
   .btn-primary:hover{background:#1a0f05;transform:translateY(-1px);}
-  .btn-ghost{background:transparent;border:2px solid var(--latte);color:var(--espresso);}
   .alert-error{background:#fdecea;border:1px solid #f5c2c2;color:#b94a48;padding:12px 14px;border-radius:10px;margin-bottom:16px;font-size:.88rem;}
   .link{color:var(--caramel);cursor:pointer;text-decoration:none;font-weight:600;}
   .text-center{text-align:center;font-size:.9rem;margin-top:8px;}
@@ -110,6 +113,10 @@ if ("POST".equals(request.getMethod())) {
       <div class="form-group">
         <label>Usuario</label>
         <input type="text" name="usuario" placeholder="Nombre de usuario..." required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" name="correo" placeholder="tu@correo.com" required autocomplete="email">
       </div>
       <div class="form-group">
         <label>Contraseña</label>
