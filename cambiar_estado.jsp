@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="util.Conexion" %>
 <%
 /* ── Solo admin ─────────────────────────────────────────── */
@@ -23,24 +24,26 @@ if ("POST".equals(request.getMethod())) {
                 );
                 ps.setString(1, nuevoEst);
                 ps.setInt(2, pid);
-                int rows = ps.executeUpdate();
-                msg = "ok:" + pid + " (rows=" + rows + ")";
+                ps.executeUpdate();
+                msg = "ok:" + pid;
             } finally {
                 if (con != null) try { con.close(); } catch (Exception ignored) {}
             }
-        } else {
-            msg = "error: estado invalido = " + nuevoEst;
         }
     } catch (Exception ex) {
         msg = "error:" + ex.getMessage();
     }
 }
 
-/* ── Cargar todos los pedidos ───────────────────────────── */
-java.util.List<Object[]> pedidos = new java.util.ArrayList<>();
+/* ── Cargar pedidos con sus productos ───────────────────── */
+java.util.LinkedHashMap<Integer, Object[]> pedidosMap = new java.util.LinkedHashMap<>();
+java.util.HashMap<Integer, java.util.List<String>> detallesMap = new java.util.HashMap<>();
+
 Connection con = null;
 try {
     con = Conexion.getConexion();
+
+    /* Cargar pedidos */
     PreparedStatement ps = con.prepareStatement(
         "SELECT p.id, p.estado, p.metodo_pago, p.total, p.fecha, u.usuario " +
         "FROM pedidos p JOIN usuarios u ON p.usuario_id = u.id " +
@@ -48,15 +51,32 @@ try {
     );
     ResultSet rs = ps.executeQuery();
     while (rs.next()) {
-        pedidos.add(new Object[]{
-            rs.getInt("id"),
+        int pid = rs.getInt("id");
+        pedidosMap.put(pid, new Object[]{
+            pid,
             rs.getString("estado"),
             rs.getString("metodo_pago"),
             rs.getDouble("total"),
             rs.getString("fecha"),
             rs.getString("usuario")
         });
+        detallesMap.put(pid, new java.util.ArrayList<String>());
     }
+
+    /* Cargar detalles de productos */
+    PreparedStatement ps2 = con.prepareStatement(
+        "SELECT pedido_id, nombre_prod, qty, subtotal FROM detalle_pedido ORDER BY pedido_id DESC"
+    );
+    ResultSet rs2 = ps2.executeQuery();
+    while (rs2.next()) {
+        int pid = rs2.getInt("pedido_id");
+        if (detallesMap.containsKey(pid)) {
+            String linea = rs2.getInt("qty") + "x " + rs2.getString("nombre_prod")
+                         + " ($" + String.format("%.0f", rs2.getDouble("subtotal")) + ")";
+            detallesMap.get(pid).add(linea);
+        }
+    }
+
 } catch (Exception ex) {
     msg = "error:" + ex.getMessage();
 } finally {
@@ -85,7 +105,11 @@ try {
   .chip-prep{background:#fef3e2;color:var(--espresso);}
   .chip-listo{background:#e8ecff;color:#4a6cf7;}
   .chip-ent{background:#e8f5ee;color:var(--mint);}
-  .pedido-info{font-size:.82rem;color:#7a5c3a;margin-bottom:12px;line-height:1.6;}
+  .pedido-info{font-size:.82rem;color:#7a5c3a;margin-bottom:8px;line-height:1.6;}
+  .productos-lista{background:var(--foam);border-radius:10px;padding:10px 14px;margin-bottom:12px;}
+  .productos-title{font-size:.75rem;font-weight:700;color:#7a5c3a;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+  .producto-item{font-size:.85rem;color:var(--espresso);padding:3px 0;border-bottom:1px solid var(--latte);}
+  .producto-item:last-child{border-bottom:none;}
   .estado-btns{display:flex;gap:8px;flex-wrap:wrap;}
   .btn-est{padding:8px 14px;border:2px solid var(--latte);border-radius:10px;font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;background:transparent;color:var(--espresso);transition:all .2s;}
   .btn-est:hover{border-color:var(--caramel);background:var(--foam);}
@@ -108,12 +132,12 @@ try {
   <div class="alert-ok">✅ Estado del pedido #<%= msg.substring(3) %> actualizado correctamente.</div>
   <% } %>
 
-  <% if (pedidos.isEmpty()) { %>
+  <% if (pedidosMap.isEmpty()) { %>
   <div class="empty">
     <div class="empty-icon">📋</div>
     <p>No hay pedidos registrados aún.</p>
   </div>
-  <% } else { for (Object[] p : pedidos) {
+  <% } else { for (Object[] p : pedidosMap.values()) {
       int    pid     = (int)    p[0];
       String estado  = (String) p[1];
       String metodo  = (String) p[2];
@@ -125,6 +149,7 @@ try {
       String estIcon = "preparacion".equals(estado) ? "🔥" : "listo".equals(estado) ? "🔔" : "✅";
       String estLabel= "preparacion".equals(estado) ? "En preparación" : "listo".equals(estado) ? "Listo para recoger" : "Entregado";
       String metIcon = "tarjeta".equals(metodo) ? "💳" : "💵";
+      java.util.List<String> prods = detallesMap.get(pid);
   %>
   <div class="card">
     <div class="pedido-head">
@@ -137,6 +162,17 @@ try {
       <%= metIcon %> <%= "tarjeta".equals(metodo) ? "Tarjeta" : "Efectivo" %><br>
       📅 <%= fecha %>
     </div>
+
+    <!-- Productos del pedido -->
+    <% if (prods != null && !prods.isEmpty()) { %>
+    <div class="productos-lista">
+      <div class="productos-title">🛒 Productos</div>
+      <% for (String prod : prods) { %>
+      <div class="producto-item"><%= prod %></div>
+      <% } %>
+    </div>
+    <% } %>
+
     <div class="estado-btns">
       <form method="post" action="cambiar_estado.jsp" style="display:inline">
         <input type="hidden" name="pedido_id" value="<%= pid %>">
