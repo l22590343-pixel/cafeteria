@@ -55,7 +55,7 @@ if (tokenResponse.contains("\"access_token\"")) {
 }
 
 if (accessToken.isEmpty()) {
-    response.sendRedirect("login.jsp?error=token_invalido");
+    response.sendRedirect("login.jsp?error=" + java.net.URLEncoder.encode("token_vacio: " + tokenResponse, "UTF-8"));
     return;
 }
 
