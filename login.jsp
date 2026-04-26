@@ -11,12 +11,12 @@ if (session.getAttribute("userId") != null) {
 
 String error = "";
 
-/* ── POST: validar credenciales en PostgreSQL ──────────── */
+/* ── POST: validar credenciales ────────────────────────── */
 if ("POST".equals(request.getMethod())) {
     String user = request.getParameter("usuario") != null
                   ? request.getParameter("usuario").trim() : "";
-    String pass = request.getParameter("pass")    != null
-                  ? request.getParameter("pass")           : "";
+    String pass = request.getParameter("pass") != null
+                  ? request.getParameter("pass") : "";
 
     if (user.isEmpty() || pass.isEmpty()) {
         error = "Completa todos los campos.";
@@ -30,15 +30,12 @@ if ("POST".equals(request.getMethod())) {
             ps.setString(1, user);
             ps.setString(2, pass);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 session.setAttribute("userId",   rs.getInt("id"));
                 session.setAttribute("username", user);
                 session.setAttribute("nombre",   rs.getString("nombre"));
                 session.setAttribute("rol",      rs.getString("rol"));
-
-                String destino = "admin".equals(rs.getString("rol")) ? "admin.jsp" : "menu.jsp";
-                response.sendRedirect(destino);
+                response.sendRedirect("admin".equals(rs.getString("rol")) ? "admin.jsp" : "menu.jsp");
                 return;
             } else {
                 error = "Usuario o contraseña incorrectos.";
@@ -51,22 +48,10 @@ if ("POST".equals(request.getMethod())) {
     }
 }
 
-/* Mensaje de registro exitoso */
 String regMsg = "ok".equals(request.getParameter("registro"))
                 ? "✅ Registro exitoso. Ahora inicia sesión." : "";
-
-/* Error de Google */
 String googleError = request.getParameter("error") != null
                 ? "⚠️ " + request.getParameter("error") : "";
-
-/* URL de Google OAuth */
-String clientId = System.getenv("GOOGLE_CLIENT_ID");
-String googleUrl = "https://accounts.google.com/o/oauth2/v2/auth"
-    + "?client_id=" + clientId
-    + "&redirect_uri=https://cafeteria-production-d4cf.up.railway.app/cafeteria/callback.jsp"
-    + "&response_type=code"
-    + "&scope=openid%20email%20profile"
-    + "&prompt=select_account";
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -75,6 +60,7 @@ String googleUrl = "https://accounts.google.com/o/oauth2/v2/auth"
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cafetería — Iniciar sesión</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
   :root{--espresso:#2C1A0E;--caramel:#C8864A;--latte:#E8C99A;--foam:#FAF0E0;--cream:#FDF6EC;--mint:#4CAF82;--danger:#E05252;}
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -84,14 +70,9 @@ String googleUrl = "https://accounts.google.com/o/oauth2/v2/auth"
     color:var(--espresso);min-height:100vh;
     display:flex;flex-direction:column;
     align-items:center;justify-content:center;
-    padding:32px 20px;
-    position:relative;
+    padding:32px 20px;position:relative;
   }
-  body::before{
-    content:'';position:absolute;inset:0;
-    background:rgba(20,10,5,.55);
-    pointer-events:none;
-  }
+  body::before{content:'';position:absolute;inset:0;background:rgba(20,10,5,.55);pointer-events:none;}
   .login-logo{text-align:center;margin-bottom:32px;position:relative;z-index:1;}
   .login-logo h1{font-family:'Playfair Display',serif;font-size:3rem;color:var(--cream);letter-spacing:2px;}
   .login-logo p{color:var(--latte);font-size:.9rem;margin-top:4px;}
@@ -106,22 +87,12 @@ String googleUrl = "https://accounts.google.com/o/oauth2/v2/auth"
   .btn-primary:hover{background:#1a0f05;transform:translateY(-1px);}
   .btn-secondary{background:var(--latte);color:var(--espresso);}
   .btn-secondary:hover{background:#d4b07a;}
-  .btn-google{
-    background:white;color:#3c4043;
-    border:2px solid #dadce0;
-    display:flex;align-items:center;justify-content:center;gap:10px;
-    font-size:.95rem;font-weight:600;
-    border-radius:12px;padding:12px;
-    cursor:pointer;width:100%;margin-bottom:10px;
-    transition:all .2s;text-decoration:none;
-  }
-  .btn-google:hover{background:#f8f9fa;border-color:#c1c7cd;box-shadow:0 2px 8px rgba(0,0,0,.1);}
-  .btn-google img{width:20px;height:20px;}
   .alert-error{background:#fdecea;border:1px solid #f5c2c2;color:#b94a48;padding:12px 14px;border-radius:10px;margin-bottom:16px;font-size:.88rem;}
   .alert-ok{background:#e8f5ee;border:1px solid #a8d5b8;color:#2d6a4f;padding:12px 14px;border-radius:10px;margin-bottom:16px;font-size:.88rem;}
   .divider{display:flex;align-items:center;gap:10px;margin:16px 0;}
   .divider span{font-size:.8rem;color:#b8a88a;white-space:nowrap;}
   .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--latte);}
+  .google-btn-container{display:flex;justify-content:center;margin-bottom:10px;}
 </style>
 </head>
 <body>
@@ -142,11 +113,23 @@ String googleUrl = "https://accounts.google.com/o/oauth2/v2/auth"
   <div class="alert-error"><%= googleError %></div>
   <% } %>
 
-  <!-- Botón Google -->
-  <a href="<%= googleUrl %>" class="btn-google">
-    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-    Continuar con Google
-  </a>
+  <!-- Botón Google Sign-In -->
+  <div id="g_id_onload"
+       data-client_id="306981945706-vb2331hp8tguee9cqtbddgqltv4vg0da.apps.googleusercontent.com"
+       data-callback="handleGoogleLogin"
+       data-auto_prompt="false">
+  </div>
+  <div class="google-btn-container">
+    <div class="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="continue_with"
+         data-shape="rectangular"
+         data-logo_alignment="left"
+         data-width="336">
+    </div>
+  </div>
 
   <div class="divider"><span>o inicia con tu cuenta</span></div>
 
@@ -163,6 +146,18 @@ String googleUrl = "https://accounts.google.com/o/oauth2/v2/auth"
   </form>
 
   <a href="registro.jsp" class="btn btn-secondary">Registrarse</a>
+
+  <!-- Formulario oculto para enviar token de Google -->
+  <form id="google-form" method="post" action="google_login.jsp" style="display:none">
+    <input type="hidden" id="google-token" name="credential">
+  </form>
 </div>
+
+<script>
+function handleGoogleLogin(response) {
+  document.getElementById('google-token').value = response.credential;
+  document.getElementById('google-form').submit();
+}
+</script>
 </body>
 </html>
