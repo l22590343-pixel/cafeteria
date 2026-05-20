@@ -3,14 +3,12 @@
 <%@ page import="java.util.*" %>
 <%@ page import="util.Conexion" %>
 <%
-/* ── Solo admin ─────────────────────────────────────────── */
 String rol = (String) session.getAttribute("rol");
 if (!"admin".equals(rol)) { response.sendRedirect("login.jsp"); return; }
 
 String busqueda = request.getParameter("q") != null ? request.getParameter("q").trim() : "";
 String msgOk    = request.getParameter("msg") != null ? request.getParameter("msg") : "";
 
-/* ── Cargar productos de PostgreSQL ─────────────────────── */
 List<Map<String,Object>> productos = new ArrayList<>();
 Connection con = null;
 try {
@@ -37,7 +35,6 @@ try {
     if (con != null) try { con.close(); } catch (Exception ignored) {}
 }
 
-/* ── Conteo de pedidos activos ──────────────────────────── */
 int pedidosActivos = 0;
 try {
     con = Conexion.getConexion();
@@ -46,7 +43,18 @@ try {
     );
     ResultSet rs = ps.executeQuery();
     if (rs.next()) pedidosActivos = rs.getInt(1);
-} catch (Exception ex) { /* ignorar */ }
+} catch (Exception ex) { }
+finally { if (con != null) try { con.close(); } catch (Exception ignored) {} }
+
+int becasActivas = 0;
+try {
+    con = Conexion.getConexion();
+    PreparedStatement ps = con.prepareStatement(
+        "SELECT COUNT(*) FROM becas WHERE activa = true"
+    );
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) becasActivas = rs.getInt(1);
+} catch (Exception ex) { }
 finally { if (con != null) try { con.close(); } catch (Exception ignored) {} }
 %>
 <!DOCTYPE html>
@@ -57,27 +65,43 @@ finally { if (con != null) try { con.close(); } catch (Exception ignored) {} }
 <title>Panel Admin — Cafetería</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--espresso:#2C1A0E;--caramel:#C8864A;--latte:#E8C99A;--foam:#FAF0E0;--cream:#FDF6EC;--mint:#4CAF82;--danger:#E05252;}
+  :root{--espresso:#2C1A0E;--caramel:#C8864A;--latte:#E8C99A;--foam:#FAF0E0;--cream:#FDF6EC;--mint:#4CAF82;--danger:#E05252;--blue:#4a6cf7;}
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--espresso);min-height:100vh;}
   .topbar{background:var(--espresso);color:var(--cream);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
   .topbar-title{font-family:'Playfair Display',serif;font-size:1.2rem;}
   .logout-btn{background:none;border:none;color:var(--latte);font-size:.8rem;cursor:pointer;padding:4px 8px;}
-  .container{padding:20px;}
-  .stats-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+  .container{padding:20px;max-width:700px;margin:0 auto;}
+  .stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;}
   .stat-card{background:white;border-radius:14px;padding:16px;text-align:center;box-shadow:0 2px 10px rgba(44,26,14,.07);}
   .stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--caramel);}
-  .stat-label{font-size:.78rem;color:#7a5c3a;margin-top:2px;}
-  .btn{display:block;width:100%;padding:14px;border:none;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;margin-bottom:10px;transition:all .2s;}
+  .stat-label{font-size:.75rem;color:#7a5c3a;margin-top:2px;}
+  .section-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:12px;margin-top:20px;}
+  .btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;}
+  .btn{display:flex;align-items:center;gap:8px;padding:14px 16px;border:none;border-radius:12px;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;text-align:left;text-decoration:none;transition:all .2s;}
+  .btn-full{grid-column:1/-1;}
   .btn-caramel{background:var(--caramel);color:white;}
   .btn-caramel:hover{background:#b8733a;}
   .btn-mint{background:var(--mint);color:white;}
-  .btn-ghost{background:transparent;border:2px solid var(--latte);color:var(--espresso);}
+  .btn-mint:hover{background:#3d9e6e;}
+  .btn-blue{background:var(--blue);color:white;}
+  .btn-blue:hover{background:#3a5cd4;}
+  .btn-espresso{background:var(--espresso);color:var(--cream);}
+  .btn-espresso:hover{background:#1a0f05;}
+  .btn-ghost{background:white;border:2px solid var(--latte);color:var(--espresso);}
+  .btn-ghost:hover{background:var(--foam);}
+  .btn-purple{background:#7c3aed;color:white;}
+  .btn-purple:hover{background:#6d28d9;}
+  .btn-orange{background:#ea580c;color:white;}
+  .btn-orange:hover{background:#c2410c;}
+  .btn-teal{background:#0d9488;color:white;}
+  .btn-teal:hover{background:#0f766e;}
+  .btn-icon{font-size:1.1rem;}
   .search-bar{margin-bottom:16px;}
   .search-bar form{display:flex;gap:8px;}
   .search-bar input{flex:1;padding:10px 14px;border:2px solid var(--latte);border-radius:10px;font-family:inherit;font-size:.9rem;background:var(--foam);outline:none;}
   .search-bar input:focus{border-color:var(--caramel);}
-  .search-bar button{padding:10px 16px;border:none;border-radius:10px;background:var(--espresso);color:white;cursor:pointer;font-size:.9rem;}
+  .search-bar button{padding:10px 16px;border:none;border-radius:10px;background:var(--espresso);color:white;cursor:pointer;}
   table{width:100%;border-collapse:collapse;background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(44,26,14,.07);}
   th{background:var(--espresso);color:var(--cream);padding:12px 10px;text-align:left;font-size:.8rem;font-weight:600;}
   td{padding:10px;border-bottom:1px solid var(--foam);font-size:.85rem;vertical-align:middle;}
@@ -88,7 +112,7 @@ finally { if (con != null) try { con.close(); } catch (Exception ignored) {} }
   .icon-btn{background:none;border:none;cursor:pointer;font-size:1rem;padding:4px;border-radius:6px;}
   .icon-btn:hover{background:var(--foam);}
   .alert-ok{background:#e8f5ee;border:1px solid #a8d5b8;color:#2d6a4f;padding:12px;border-radius:10px;margin-bottom:16px;font-size:.88rem;}
-  .section-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:12px;}
+  .divider{height:1px;background:var(--latte);margin:20px 0;opacity:.4;}
 </style>
 </head>
 <body>
@@ -102,9 +126,9 @@ finally { if (con != null) try { con.close(); } catch (Exception ignored) {} }
 <div class="container">
 
   <% if ("producto_guardado".equals(msgOk)) { %>
-  <div class="alert-ok">✅ Producto guardado correctamente en la base de datos.</div>
+  <div class="alert-ok">✅ Producto guardado correctamente.</div>
   <% } else if ("producto_eliminado".equals(msgOk)) { %>
-  <div class="alert-ok" style="background:#fdecea;border-color:#f5c2c2;color:#b94a48">🗑️ Producto eliminado del sistema.</div>
+  <div class="alert-ok" style="background:#fdecea;border-color:#f5c2c2;color:#b94a48">🗑️ Producto eliminado.</div>
   <% } %>
 
   <!-- Estadísticas -->
@@ -117,16 +141,63 @@ finally { if (con != null) try { con.close(); } catch (Exception ignored) {} }
       <div class="stat-num"><%= pedidosActivos %></div>
       <div class="stat-label">Pedidos activos</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-num"><%= becasActivas %></div>
+      <div class="stat-label">Becas activas</div>
+    </div>
   </div>
 
-  <!-- Acciones rápidas -->
-  <a href="cambiar_estado.jsp" class="btn btn-caramel">📋 Gestionar Pedidos</a>
-  <a href="form_producto.jsp"  class="btn btn-mint">➕ Agregar Producto</a>
-  <a href="inventario.jsp"     class="btn btn-ghost">📦 Ver Inventario</a>
+  <!-- Pedidos -->
+  <div class="section-title">📋 Pedidos</div>
+  <div class="btn-grid">
+    <a href="cambiar_estado.jsp" class="btn btn-caramel btn-full">
+      <span class="btn-icon">📋</span> Gestionar Pedidos
+    </a>
+    <a href="movimientos.jsp" class="btn btn-ghost">
+      <span class="btn-icon">📦</span> Registro de Movimientos
+    </a>
+    <a href="corte_caja.jsp" class="btn btn-espresso">
+      <span class="btn-icon">💰</span> Corte de Caja
+    </a>
+  </div>
 
-  <div class="section-title" style="margin-top:20px">Productos</div>
+  <!-- Productos -->
+  <div class="section-title">🛍️ Productos</div>
+  <div class="btn-grid">
+    <a href="form_producto.jsp" class="btn btn-mint">
+      <span class="btn-icon">➕</span> Agregar Producto
+    </a>
+    <a href="inventario.jsp" class="btn btn-ghost">
+      <span class="btn-icon">📦</span> Ver Inventario
+    </a>
+  </div>
 
-  <!-- Buscador -->
+  <!-- Reportes -->
+  <div class="section-title">📊 Reportes</div>
+  <div class="btn-grid">
+    <a href="reporte_ventas.jsp" class="btn btn-blue">
+      <span class="btn-icon">📊</span> Reporte de Ventas
+    </a>
+    <a href="reporte_horario.jsp" class="btn btn-teal">
+      <span class="btn-icon">⏰</span> Reporte por Horario
+    </a>
+  </div>
+
+  <!-- Becas -->
+  <div class="section-title">🎓 Becas Alimenticias</div>
+  <div class="btn-grid">
+    <a href="gestion_becas.jsp" class="btn btn-purple">
+      <span class="btn-icon">🎓</span> Gestión de Becas
+    </a>
+    <a href="vigencia_becas.jsp" class="btn btn-orange">
+      <span class="btn-icon">📋</span> Control de Vigencia
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Tabla productos -->
+  <div class="section-title">Productos registrados</div>
   <div class="search-bar">
     <form method="get" action="admin.jsp">
       <input type="text" name="q" value="<%= busqueda %>" placeholder="🔍 Buscar producto...">
@@ -134,7 +205,6 @@ finally { if (con != null) try { con.close(); } catch (Exception ignored) {} }
     </form>
   </div>
 
-  <!-- Tabla productos -->
   <table>
     <thead>
       <tr>
