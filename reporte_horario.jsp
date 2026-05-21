@@ -114,8 +114,8 @@ for (Object[] h : porHora) {
     <% if (porHora.isEmpty()) { %>
     <div class="empty">Sin ventas registradas para esta fecha</div>
     <% } else { for (Object[] h : porHora) {
-        int hora = (int)((double)h[0]);
-        int num = (int)h[1];
+        int hora = ((Number)h[0]).intValue();
+        int num = ((Number)h[1]).intValue();
         double suma = (double)h[2];
         int pct = maxVenta > 0 ? (int)(suma * 100 / maxVenta) : 0;
         boolean esManana = hora < 13;
