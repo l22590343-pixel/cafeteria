@@ -23,7 +23,7 @@ try {
     PreparedStatement ps = con.prepareStatement(
         "SELECT metodo_pago, COUNT(*) as num, SUM(total) as suma " +
         "FROM pedidos " +
-        "WHERE DATE(fecha) = ? " +
+        "WHERE DATE(fecha) = ?::date " +
         "AND EXTRACT(HOUR FROM fecha) >= 7 AND EXTRACT(HOUR FROM fecha) < 19 " +
         "GROUP BY metodo_pago"
     );
@@ -42,7 +42,7 @@ try {
 
     // Pedidos entregados
     PreparedStatement ps2 = con.prepareStatement(
-        "SELECT COUNT(*) FROM pedidos WHERE DATE(fecha) = ? AND estado = 'entregado'::estado_tipo"
+        "SELECT COUNT(*) FROM pedidos WHERE DATE(fecha) = ?::date AND estado = 'entregado'::estado_tipo"
     );
     ps2.setString(1, fecha);
     ResultSet rs2 = ps2.executeQuery();

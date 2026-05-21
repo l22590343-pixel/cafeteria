@@ -36,7 +36,7 @@ try {
     // Ventas por día en el periodo
     PreparedStatement ps = con.prepareStatement(
         "SELECT DATE(fecha) as dia, COUNT(*) as num, SUM(total) as suma " +
-        "FROM pedidos WHERE DATE(fecha) BETWEEN ? AND ? " +
+        "FROM pedidos WHERE DATE(fecha) BETWEEN ?::date AND ?::date " +
         "GROUP BY DATE(fecha) ORDER BY dia DESC"
     );
     ps.setString(1, fechaInicio);
@@ -57,7 +57,7 @@ try {
         "SELECT d.nombre_prod, SUM(d.qty) as total_qty, SUM(d.subtotal) as total_venta " +
         "FROM detalle_pedido d " +
         "JOIN pedidos p ON d.pedido_id = p.id " +
-        "WHERE DATE(p.fecha) BETWEEN ? AND ? " +
+        "WHERE DATE(p.fecha) BETWEEN ?::date AND ?::date " +
         "GROUP BY d.nombre_prod ORDER BY total_qty DESC LIMIT 5"
     );
     ps2.setString(1, fechaInicio);

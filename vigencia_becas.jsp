@@ -11,7 +11,7 @@ Connection con = null;
 try {
     con = Conexion.getConexion();
     PreparedStatement upd = con.prepareStatement(
-        "UPDATE becas SET activa = false WHERE semana_fin < CURRENT_DATE AND activa = true"
+        "UPDATE becas SET activa = false WHERE fecha_fin < CURRENT_DATE AND activa = true"
     );
     upd.executeUpdate();
 } catch (Exception ex) {}
@@ -21,9 +21,9 @@ List<Object[]> vencidas = new ArrayList<>();
 
 try {
     PreparedStatement ps = con.prepareStatement(
-        "SELECT id, nombre, numero_control, semana_inicio, semana_fin, monto, saldo_restante, activa, " +
-        "(semana_fin - CURRENT_DATE) as dias_restantes " +
-        "FROM becas ORDER BY activa DESC, semana_fin ASC"
+        "SELECT id, nombre, numero_control, fecha_inicio, fecha_fin, monto, saldo_restante, activa, " +
+        "(fecha_fin - CURRENT_DATE) as dias_restantes " +
+        "FROM becas ORDER BY activa DESC, fecha_fin ASC"
     );
     ResultSet rs = ps.executeQuery();
     while (rs.next()) {
@@ -31,8 +31,8 @@ try {
             rs.getInt("id"),
             rs.getString("nombre"),
             rs.getString("numero_control"),
-            rs.getString("semana_inicio"),
-            rs.getString("semana_fin"),
+            rs.getString("fecha_inicio"),
+            rs.getString("fecha_fin"),
             rs.getDouble("monto"),
             rs.getDouble("saldo_restante"),
             rs.getBoolean("activa"),

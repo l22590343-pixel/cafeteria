@@ -19,7 +19,7 @@ try {
     con = Conexion.getConexion();
     PreparedStatement ps = con.prepareStatement(
         "SELECT EXTRACT(HOUR FROM fecha) as hora, COUNT(*) as num, SUM(total) as suma " +
-        "FROM pedidos WHERE DATE(fecha) = ? " +
+        "FROM pedidos WHERE DATE(fecha) = ?::date " +
         "AND EXTRACT(HOUR FROM fecha) >= 7 AND EXTRACT(HOUR FROM fecha) < 19 " +
         "GROUP BY hora ORDER BY hora"
     );

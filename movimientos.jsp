@@ -19,7 +19,7 @@ try {
         "FROM pedidos p " +
         "JOIN usuarios u ON p.usuario_id = u.id " +
         "LEFT JOIN detalle_pedido d ON d.pedido_id = p.id " +
-        "WHERE DATE(p.fecha) = ? " +
+        "WHERE DATE(p.fecha) = ?::date " +
         "GROUP BY p.id, p.fecha, p.estado, p.total, p.metodo_pago, u.usuario " +
         "ORDER BY p.fecha DESC"
     );
