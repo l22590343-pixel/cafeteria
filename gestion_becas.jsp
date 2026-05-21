@@ -11,28 +11,23 @@ String msgType = "";
 
 // POST: agregar nueva beca
 if ("POST".equals(request.getMethod())) {
-    String nombre    = request.getParameter("nombre");
-    String numCtrl   = request.getParameter("numero_control");
-    String semIni    = request.getParameter("semana_inicio");
-    String semFin    = request.getParameter("semana_fin");
-    String montoStr  = request.getParameter("monto");
+    String nombre  = request.getParameter("nombre");
+    String numCtrl = request.getParameter("numero_control");
+    String inicio  = request.getParameter("fecha_inicio");
+    String fin     = request.getParameter("fecha_fin");
 
     try {
-        double monto = Double.parseDouble(montoStr);
         Connection con = Conexion.getConexion();
         PreparedStatement ps = con.prepareStatement(
-            "INSERT INTO becas (nombre, numero_control, semana_inicio, semana_fin, monto, saldo_restante) " +
-            "VALUES (?, ?, ?, ?, ?, ?)"
+            "INSERT INTO becas (nombre, numero_control, fecha_inicio, fecha_fin) VALUES (?, ?, ?, ?)"
         );
-        ps.setString(1, nombre);
-        ps.setString(2, numCtrl);
-        ps.setDate(3, java.sql.Date.valueOf(semIni));
-        ps.setDate(4, java.sql.Date.valueOf(semFin));
-        ps.setDouble(5, monto);
-        ps.setDouble(6, monto);
+        ps.setString(1, nombre.trim());
+        ps.setString(2, numCtrl.trim());
+        ps.setDate(3, java.sql.Date.valueOf(inicio));
+        ps.setDate(4, java.sql.Date.valueOf(fin));
         ps.executeUpdate();
         con.close();
-        msg = "Beca asignada correctamente a " + nombre;
+        msg = "Beca asignada a " + nombre;
         msgType = "ok";
     } catch (Exception ex) {
         msg = "Error: " + ex.getMessage();
@@ -46,8 +41,11 @@ Connection con = null;
 try {
     con = Conexion.getConexion();
     PreparedStatement ps = con.prepareStatement(
-        "SELECT id, nombre, numero_control, semana_inicio, semana_fin, monto, saldo_restante, activa " +
-        "FROM becas ORDER BY id DESC"
+        "SELECT b.id, b.nombre, b.numero_control, b.fecha_inicio, b.fecha_fin, b.activa, " +
+        "COUNT(a.id) as dias_tomados " +
+        "FROM becas b LEFT JOIN asistencia_becas a ON a.beca_id = b.id " +
+        "GROUP BY b.id, b.nombre, b.numero_control, b.fecha_inicio, b.fecha_fin, b.activa " +
+        "ORDER BY b.activa DESC, b.nombre ASC"
     );
     ResultSet rs = ps.executeQuery();
     while (rs.next()) {
@@ -55,18 +53,23 @@ try {
             rs.getInt("id"),
             rs.getString("nombre"),
             rs.getString("numero_control"),
-            rs.getString("semana_inicio"),
-            rs.getString("semana_fin"),
-            rs.getDouble("monto"),
-            rs.getDouble("saldo_restante"),
-            rs.getBoolean("activa")
+            rs.getString("fecha_inicio"),
+            rs.getString("fecha_fin"),
+            rs.getBoolean("activa"),
+            rs.getInt("dias_tomados")
         });
     }
 } catch (Exception ex) {
     msg = "Error cargando becas: " + ex.getMessage();
+    msgType = "error";
 } finally {
     if (con != null) try { con.close(); } catch (Exception ignored) {}
 }
+
+// Calcular fecha fin por defecto (6 meses desde hoy)
+java.time.LocalDate hoy = java.time.LocalDate.now();
+String fechaInicioDefault = hoy.toString();
+String fechaFinDefault = hoy.plusMonths(6).toString();
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -82,30 +85,38 @@ try {
   .topbar{background:var(--espresso);color:var(--cream);padding:16px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;}
   .topbar a{color:var(--latte);text-decoration:none;font-size:1.3rem;}
   .topbar-title{font-family:'Playfair Display',serif;font-size:1.2rem;}
-  .container{max-width:650px;margin:24px auto;padding:0 20px;}
-  .card{background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(44,26,14,.08);margin-bottom:16px;}
-  .card h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:16px;}
+  .container{max-width:680px;margin:24px auto;padding:0 20px;}
+  .card{background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(44,26,14,.08);margin-bottom:20px;}
+  .card h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:16px;color:var(--espresso);}
   .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .form-group{margin-bottom:12px;}
+  .form-group{margin-bottom:4px;}
   .form-group.full{grid-column:1/-1;}
-  .form-group label{display:block;font-size:.8rem;font-weight:600;margin-bottom:5px;color:#7a5c3a;text-transform:uppercase;}
-  .form-group input{width:100%;padding:10px 12px;border:2px solid var(--latte);border-radius:8px;font-family:inherit;font-size:.9rem;background:var(--foam);}
-  .form-group input:focus{border-color:var(--caramel);background:white;outline:none;}
-  .btn-submit{width:100%;padding:13px;background:var(--espresso);color:var(--cream);border:none;border-radius:10px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;margin-top:4px;}
+  .form-group label{display:block;font-size:.78rem;font-weight:700;margin-bottom:5px;color:#7a5c3a;text-transform:uppercase;letter-spacing:.4px;}
+  .form-group input{width:100%;padding:11px 13px;border:2px solid var(--latte);border-radius:9px;font-family:inherit;font-size:.92rem;background:var(--foam);outline:none;transition:border .2s;}
+  .form-group input:focus{border-color:var(--caramel);background:white;}
+  .btn-submit{width:100%;padding:14px;background:var(--espresso);color:var(--cream);border:none;border-radius:11px;font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;margin-top:8px;transition:background .2s;}
+  .btn-submit:hover{background:#1a0f05;}
   .alert-ok{background:#e8f5ee;border:1px solid #a8d5b8;color:#2d6a4f;padding:12px;border-radius:10px;margin-bottom:16px;font-size:.88rem;}
   .alert-error{background:#fdecea;border:1px solid #f5c2c2;color:#b94a48;padding:12px;border-radius:10px;margin-bottom:16px;font-size:.88rem;}
-  .beca-card{background:white;border-radius:14px;padding:16px 20px;box-shadow:0 2px 10px rgba(44,26,14,.07);margin-bottom:10px;border-left:4px solid var(--caramel);}
-  .beca-card.inactiva{border-left-color:#ccc;opacity:.7;}
-  .beca-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
-  .beca-nombre{font-weight:700;font-size:.95rem;}
-  .beca-ctrl{font-size:.78rem;color:#7a5c3a;margin-top:2px;}
-  .chip-activa{background:#e8f5ee;color:var(--mint);padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600;}
-  .chip-vencida{background:#f5f5f5;color:#999;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600;}
-  .beca-info{display:flex;gap:16px;font-size:.82rem;color:#7a5c3a;margin-bottom:8px;}
-  .saldo-bar-container{background:var(--foam);border-radius:6px;height:8px;overflow:hidden;}
-  .saldo-bar{height:100%;background:var(--mint);border-radius:6px;}
-  .saldo-texto{display:flex;justify-content:space-between;font-size:.78rem;margin-top:4px;}
   .section-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:14px;}
+  .search-bar{display:flex;gap:10px;margin-bottom:16px;}
+  .search-bar input{flex:1;padding:10px 14px;border:2px solid var(--latte);border-radius:9px;font-family:inherit;font-size:.9rem;background:var(--foam);outline:none;}
+  .search-bar input:focus{border-color:var(--caramel);}
+  table{width:100%;border-collapse:collapse;background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(44,26,14,.07);}
+  th{background:var(--espresso);color:var(--cream);padding:11px 12px;text-align:left;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.3px;}
+  td{padding:11px 12px;border-bottom:1px solid var(--foam);font-size:.85rem;vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:var(--foam);}
+  .chip-activa{background:#e8f5ee;color:var(--mint);padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700;}
+  .chip-vencida{background:#f5f5f5;color:#999;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700;}
+  .dias-badge{background:var(--foam);border-radius:6px;padding:2px 8px;font-size:.8rem;font-weight:700;color:var(--espresso);}
+  .btn-eliminar{background:none;border:none;cursor:pointer;color:#ccc;font-size:1rem;padding:4px;border-radius:6px;}
+  .btn-eliminar:hover{color:var(--danger);background:#fdecea;}
+  .empty{text-align:center;padding:30px;color:#b8a88a;font-size:.9rem;}
+  .stats-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+  .stat-mini{background:white;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(44,26,14,.07);}
+  .stat-mini-num{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--caramel);}
+  .stat-mini-label{font-size:.72rem;color:#7a5c3a;margin-top:2px;}
 </style>
 </head>
 <body>
@@ -116,78 +127,90 @@ try {
 <div class="container">
 
   <% if (!msg.isEmpty()) { %>
-  <div class="alert-<%= msgType %>"><%= "ok".equals(msgType) ? "✅" : "⚠️" %> <%= msg %></div>
+  <div class="alert-<%= msgType %>">
+    <%= "ok".equals(msgType) ? "✅" : "⚠️" %> <%= msg %>
+  </div>
   <% } %>
 
-  <!-- Formulario nueva beca -->
+  <%
+  int totalActivas = 0, totalVencidas = 0, totalDias = 0;
+  for (Object[] b : becas) {
+      if ((boolean)b[5]) totalActivas++; else totalVencidas++;
+      totalDias += (int)b[6];
+  }
+  %>
+  <div class="stats-mini">
+    <div class="stat-mini">
+      <div class="stat-mini-num"><%= totalActivas %></div>
+      <div class="stat-mini-label">Becas activas</div>
+    </div>
+    <div class="stat-mini">
+      <div class="stat-mini-num"><%= totalVencidas %></div>
+      <div class="stat-mini-label">Vencidas</div>
+    </div>
+    <div class="stat-mini">
+      <div class="stat-mini-num"><%= totalDias %></div>
+      <div class="stat-mini-label">Días tomados</div>
+    </div>
+  </div>
+
+  <!-- Formulario -->
   <div class="card">
-    <h3>➕ Asignar nueva beca</h3>
+    <h3>➕ Dar de alta nuevo estudiante</h3>
     <form method="post">
       <div class="form-grid">
         <div class="form-group full">
-          <label>Nombre del estudiante</label>
-          <input type="text" name="nombre" placeholder="Nombre completo" required>
+          <label>Nombre completo del estudiante</label>
+          <input type="text" name="nombre" placeholder="Ej. Juan García López" required>
         </div>
         <div class="form-group">
           <label>Número de control</label>
           <input type="text" name="numero_control" placeholder="Ej. 22590343" required>
         </div>
         <div class="form-group">
-          <label>Monto de beca ($)</label>
-          <input type="number" name="monto" placeholder="500.00" step="0.01" value="500" required>
+          <label>Inicio del semestre</label>
+          <input type="date" name="fecha_inicio" value="<%= fechaInicioDefault %>" required>
         </div>
         <div class="form-group">
-          <label>Inicio de semana</label>
-          <input type="date" name="semana_inicio" required>
-        </div>
-        <div class="form-group">
-          <label>Fin de semana</label>
-          <input type="date" name="semana_fin" required>
+          <label>Fin del semestre</label>
+          <input type="date" name="fecha_fin" value="<%= fechaFinDefault %>" required>
         </div>
       </div>
-      <button type="submit" class="btn-submit">✅ Asignar beca</button>
+      <button type="submit" class="btn-submit">✅ Dar de alta</button>
     </form>
   </div>
 
-  <!-- Lista de becas -->
-  <div class="section-title">Becas registradas</div>
+  <!-- Tabla de estudiantes -->
+  <div class="section-title">📋 Estudiantes con beca (<%= becas.size() %>)</div>
 
   <% if (becas.isEmpty()) { %>
-  <div style="text-align:center;padding:30px;color:#b8a88a;">No hay becas registradas aún.</div>
-  <% } else { for (Object[] b : becas) {
-      int id = (int) b[0];
-      String nombre = (String) b[1];
-      String ctrl = (String) b[2];
-      String ini = (String) b[3];
-      String fin = (String) b[4];
-      double monto = (double) b[5];
-      double saldo = (double) b[6];
-      boolean activa = (boolean) b[7];
-      int pct = monto > 0 ? (int)(saldo * 100 / monto) : 0;
-  %>
-  <div class="beca-card <%= !activa ? "inactiva" : "" %>">
-    <div class="beca-head">
-      <div>
-        <div class="beca-nombre">👤 <%= nombre %></div>
-        <div class="beca-ctrl">N° Control: <%= ctrl %></div>
-      </div>
-      <span class="<%= activa ? "chip-activa" : "chip-vencida" %>">
-        <%= activa ? "Activa" : "Vencida" %>
-      </span>
-    </div>
-    <div class="beca-info">
-      <span>📅 <%= ini %> al <%= fin %></span>
-      <span>💰 Monto: $<%= String.format("%.2f", monto) %></span>
-    </div>
-    <div class="saldo-bar-container">
-      <div class="saldo-bar" style="width:<%= pct %>%"></div>
-    </div>
-    <div class="saldo-texto">
-      <span>Saldo restante: $<%= String.format("%.2f", saldo) %></span>
-      <span><%= pct %>%</span>
-    </div>
-  </div>
-  <% } } %>
+  <div class="empty">No hay estudiantes registrados aún.</div>
+  <% } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>N° Control</th>
+        <th>Vigencia</th>
+        <th>Días tomados</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (Object[] b : becas) { %>
+      <tr>
+        <td><strong><%= b[1] %></strong></td>
+        <td style="font-family:monospace;font-size:.88rem"><%= b[2] %></td>
+        <td style="font-size:.78rem;color:#7a5c3a"><%= b[3] %><br>al <%= b[4] %></td>
+        <td><span class="dias-badge"><%= b[6] %> días</span></td>
+        <td><span class="<%= (boolean)b[5] ? "chip-activa" : "chip-vencida" %>">
+          <%= (boolean)b[5] ? "Activa" : "Vencida" %>
+        </span></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <% } %>
 
 </div>
 </body>

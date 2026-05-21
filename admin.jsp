@@ -186,6 +186,9 @@ finally { if (con != null) try { con.close(); } catch (Exception ignored) {} }
   <!-- Becas -->
   <div class="section-title">🎓 Becas Alimenticias</div>
   <div class="btn-grid">
+    <a href="tomar_beca.jsp" class="btn btn-mint btn-full">
+      <span class="btn-icon">✅</span> Tomar Beca del Día
+    </a>
     <a href="gestion_becas.jsp" class="btn btn-purple">
       <span class="btn-icon">🎓</span> Gestión de Becas
     </a>
